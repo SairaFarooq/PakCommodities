@@ -1,17 +1,37 @@
-.logo-wrapper{
+/* .logo-wrapper{
     margin:0;
     background : red;
     width : 250px;
     height : 147px;
     
-}
+} */
 
+.topnav{
+    height : 120px !important;
+}
+.uppernav{
+    color : black !important;
+    font-weight: bold;
+}
+nav .brand-logo{
+    
+    color :teal !important;
+    font-weight: bold;
+}
 .logo{
-    margin-left : 10px;
+    margin-left : 30px;
+    margin-bottom :30px;
+    margin-top :10px;
     width : 100px;
     height : 100px;
+    border-radius: 12px;;
 }
 
+.sub-heading{
+    color : black;
+    font-size: medium;
+    
+}
 .header-right-content{
 
     background : yellow;

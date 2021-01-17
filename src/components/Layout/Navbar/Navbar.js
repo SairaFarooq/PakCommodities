@@ -1,45 +1,73 @@
-import {NavLink} from 'react-router-dom';
+
 import './Navbar.css';
 
 const Navbar = () =>{
     return(
-        <nav className="nav-wrapper grey darken-3">
-            {/*  Dropdown Structure */} 
-            <ul id="pulsesDropdown" className="dropdown-content grey darken-3">
-                <li><a href="#!">Desi Chickpeas</a></li>
-                <li><a href="#!">Kabuli ChickPeas</a></li>
-                <li><a href="#!">Black matpe</a></li>
-                <li><a href="#!">Lentil</a></li>
-                <li><a href="#!">Moong Beans</a></li>
-                <li><a href="#!">Mooth Beans</a></li>
-                <li><a href="#!">Yellow Peas</a></li>
-            </ul>
-
-
+        <nav className="nav-wrapper amber darken-3">
             <div className="container">
-
                 <ul>
                
-                <li><a class="categories dropdown-trigger" href="#!" data-target="dropdown1">Dropdown<i class="material-icons right">arrow_drop_down</i></a></li>
-                   
-                   <li><a href ="/pulses" className="categories btn dropdown-button" data-activates="dropdown1" >PULSES<i class="material-icons right">arrow_drop_down</i></a></li>
-                   <li><NavLink to ="/grains" className="categories">GRAINS<i class="material-icons right">arrow_drop_down</i></NavLink></li>
-                   <li><NavLink to ="/fodderseeds"className="categories">FODDER SEEDS<i class="material-icons right">arrow_drop_down</i></NavLink></li>
-                   <li><NavLink to ="/spices" className="categories">SPICES<i class="material-icons right">arrow_drop_down</i></NavLink></li>
-                   <li><NavLink to ="/sugar" className="categories">SUGAR/GUR<i class="material-icons right">arrow_drop_down</i></NavLink></li>
-                   <li><NavLink to ="/guar"className="categories">GUAR<i class="material-icons right">arrow_drop_down</i></NavLink></li>
-                   <li><NavLink to ="/oilseeds" className="categories">OIL SEEDS<i class="material-icons right">arrow_drop_down</i></NavLink></li>
-                   <li>
-                       <form>
-                            <div class="input-field">
-                                <input id="search" type="search" required />
-                                <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-                                <i class="material-icons">close</i>
-                            </div>
-                         </form>
-                        
-                    </li>
+                    <li><a className='dropdown-button btn amber darken-3 categories' data-beloworigin="true" href='#' data-activates='pulsesDropDown'>PULSES<i className="material-icons right">arrow_drop_down</i></a></li>
+                    <li><a className='dropdown-button btn amber darken-3 categories' data-beloworigin="true" href='#' data-activates='grainsDropDown'>GRAINS<i className="material-icons right">arrow_drop_down</i></a></li>
+                    <li><a className='dropdown-button btn amber darken-3 categories' data-beloworigin="true" href='#' data-activates='fodderSeedsDropDown'>FODDER SEEDS<i className="material-icons right">arrow_drop_down</i></a></li>
+                    <li><a className='dropdown-button btn amber darken-3 categories' data-beloworigin="true" href='#' data-activates='spicesDropDown'>SPICES<i className="material-icons right">arrow_drop_down</i></a></li>
+                    <li><a className='dropdown-button btn amber darken-3 categories' data-beloworigin="true" href='#' data-activates='sugarDropDown'>SUGAR/GUR<i className="material-icons right">arrow_drop_down</i></a></li>
+                    <li><a className='dropdown-button btn amber darken-3 categories' data-beloworigin="true" href='#' data-activates='guarDropDown'>GUAR<i className="material-icons right">arrow_drop_down</i></a></li>
+                    <li><a className='dropdown-button btn amber darken-3 categories' data-beloworigin="true" href='#' data-activates='oilSeedsDropDown'>OIL SEEDS<i className="material-icons right">arrow_drop_down</i></a></li>
+
                 </ul>
+
+                 {/*  Dropdown Structure */}
+                <ul id="pulsesDropDown" className="dropdown-content amber darken-3">
+                    <li><a href="#!">Desi Chickpeas</a></li>
+                    <li><a href="#!">Kabuli ChickPeas</a></li>
+                    <li><a href="#!">Black matpe</a></li>
+                    <li><a href="#!">Lentil</a></li>
+                    <li><a href="#!">Moong Beans</a></li>
+                    <li><a href="#!">Mooth Beans</a></li>
+                    <li><a href="#!">Yellow Peas</a></li>
+                </ul> 
+
+                <ul id="grainsDropDown" className="dropdown-content amber darken-3">
+                    <li><a href="#!">Oats</a></li>
+                    <li><a href="#!">Wheat</a></li>
+                    <li><a href="#!">Maize</a></li>
+                    <li><a href="#!">Millet</a></li>
+                    <li><a href="#!">Sorghum</a></li>
+                </ul> 
+
+                <ul id="fodderSeedsDropDown" className="dropdown-content amber darken-3">
+                    <li><a href="#!">Clover Seeds</a></li>
+                    <li><a href="#!">Alfalfa Seeds</a></li>
+                    <li><a href="#!">Sorghum Seeds</a></li>
+                    <li><a href="#!">Susbania Seeds</a></li>
+                    <li><a href="#!">Maize Fodder Quality</a></li>
+                </ul> 
+
+                <ul id="spicesDropDown" className="dropdown-content amber darken-3">
+                    <li><a href="#!">Red Chilli</a></li>
+                    <li><a href="#!">Turmeric</a></li>
+                    <li><a href="#!">Corrainder</a></li>
+                    <li><a href="#!">Cumin Seeds</a></li>
+                </ul>
+                
+                <ul id="sugarDropDown" className="dropdown-content amber darken-3">
+                    <li><a href="#!">Sugar</a></li>
+                    <li><a href="#!">Gur</a></li>
+                </ul>
+
+                <ul id="guarDropDown" className="dropdown-content amber darken-3">
+                    <li><a href="#!">Guar Seeds</a></li>
+                </ul>
+
+                <ul id="oilSeedsDropDown" className="dropdown-content amber darken-3">
+                    <li><a href="#!">Mustard Seed</a></li>
+                    <li><a href="#!">Bitter Mustard</a></li>
+                    <li><a href="#!">Sunflower</a></li>
+                    <li><a href="#!">Sesame Seed</a></li>
+                    <li><a href="#!">Castor Seed</a></li>
+                </ul> 
+
             </div>
         </nav>
     )

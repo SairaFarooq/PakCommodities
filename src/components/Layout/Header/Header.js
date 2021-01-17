@@ -1,26 +1,30 @@
 // Header : top of the page
 import logopc from '../../../logopc.PNG';
 import './Header.css';
+import {NavLink, Link} from 'react-router-dom';
 const Header = () =>{
     return(
-        <div className= "wrapper">
-            <div className = "header-content">
-                {/*  logo div*/}
-                <div className="logo-wrapper s-4">
-                    <a href="/">
-                        <img className="logo" src={logopc} alt="LOGO"/>
-                    </a>
-                </div>
+        
+        <nav className="nav-wrapper grey lighten-5 topnav">
+            <div className="container">
 
-                {/*  Header content*/}
-                <div className="header-right-content">
-                    This is header=content
+            <a href="/"><img className="logo" src={logopc} alt="LOGO"/></a>
 
-                </div>
-
+                <Link to="/" className="brand-logo">PAK COMMODITIES <br/> <div class="sub-heading">FASTEST NEWS UPDATES OF COMMODITIES IN PAKISTAN </div></Link>
+                
+                <ul className="right">
+                    <li><NavLink to="/blog" className="uppernav">BLOG</NavLink></li>
+                    <li><NavLink to="/news" className="uppernav">NEWSROOM</NavLink></li>
+                    <li><NavLink to="/login" className="uppernav">LOGIN</NavLink></li>
+                    <li><NavLink to="/logout" className="uppernav">LOGOUT</NavLink></li>
+                    <li><NavLink to="/signup" className="uppernav">SIGNUP</NavLink></li>
+                </ul>
+               
             </div>
-            <h1>Header : Pak Commodities</h1>
-        </div>
+        </nav>
+        
+
+    
     )
 
 }
