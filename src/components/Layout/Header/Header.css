@@ -1,0 +1,19 @@
+.logo-wrapper{
+    margin:0;
+    background : red;
+    width : 250px;
+    height : 147px;
+    
+}
+
+.logo{
+    margin-left : 10px;
+    width : 100px;
+    height : 100px;
+}
+
+.header-right-content{
+
+    background : yellow;
+    float : right
+}

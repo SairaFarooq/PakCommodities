@@ -1,11 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
+// import './App.css';
+import Navbar from './components/Layout/Navbar/Navbar';
+import Header from './components/Layout/Header/Header';
+
+import {BrowserRouter} from 'react-router-dom';
 
 function App() {
   return (
-    <div className="App">
-      <h1>HELLO WORLD</h1>
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <Header />
+        <Navbar />
+      </div>
+    </BrowserRouter>
   );
 }
 
