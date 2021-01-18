@@ -1,0 +1,22 @@
+.footer-logo{
+    margin : 5px;
+}
+
+.social-icon{
+    height : 30px;
+}
+
+.footerheadings{
+    color :rgb(255, 174, 0) !important;
+    text-decoration: underline !important;
+    text-decoration-style :unset!important;
+}
+    
+.footer-subLinks{
+    color : white;
+    margin-left : 15px;
+    font-weight:700;
+    text-align: right !important;
+
+
+}
