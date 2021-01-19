@@ -13,6 +13,7 @@ function App() {
         <Header />
         <Navbar />
         <Home />
+        this is after home 
       </div>
       <Footer/>
     </BrowserRouter>

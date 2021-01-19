@@ -1,0 +1,34 @@
+.carousel .carousel-item{
+    height : 1000px !important;
+    visibility: visible !important;
+}
+
+/* TABS */
+
+.tabs{
+    background-color: #757575 !important;
+    border-radius: 8px ;
+    
+}
+
+.tab a.active {
+    background-color: #ff8f00 !important;
+    color : white !important;
+
+}
+
+.tab a {
+    color : white !important;
+
+}
+
+/* Business cards */
+
+.overlined {
+    text-decoration: line-through !important;
+}
+
+.bullets{
+    list-style-type: disc !important;
+    margin-left:1px;
+}
