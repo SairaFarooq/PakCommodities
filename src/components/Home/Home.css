@@ -6,13 +6,13 @@
 /* TABS */
 
 .tabs{
-    background-color: #757575 !important;
+    background-color: #656565 !important;
     border-radius: 8px ;
     
 }
 
 .tab a.active {
-    background-color: #ff8f00 !important;
+    background-color: rgb(16, 172, 132) !important;
     color : white !important;
 
 }

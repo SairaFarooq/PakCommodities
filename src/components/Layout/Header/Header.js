@@ -1,5 +1,6 @@
 // Header : top of the page
 import logopc from '../../../logopc.PNG';
+import logo2 from '../../../assets/logo2.png';
 import './Header.css';
 import {NavLink, Link} from 'react-router-dom';
 const Header = () =>{
@@ -8,9 +9,9 @@ const Header = () =>{
         <nav className="nav-wrapper grey lighten-5 topnav">
             <div className="container">
 
-            <a href="/"><img className="logo" src={logopc} alt="LOGO"/></a>
+            <a href="/"><img className="logo" src={logo2} alt="LOGO"/></a>
 
-                <Link to="/" className="brand-logo">PAK COMMODITIES <br/> <div class="sub-heading">FASTEST NEWS UPDATES OF COMMODITIES IN PAKISTAN </div></Link>
+               {/* <Link to="/" className="brand-logo">PAK COMMODITIES <br/> <div class="sub-heading">FASTEST NEWS UPDATES OF COMMODITIES IN PAKISTAN </div></Link> */}
                 
                 <ul className="right">
                     <li><NavLink to="/blog" className="uppernav">BLOG</NavLink></li>

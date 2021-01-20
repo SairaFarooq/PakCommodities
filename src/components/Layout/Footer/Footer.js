@@ -9,7 +9,7 @@ const Footer = () =>{
   
     return(
 
-        <footer className="page-footer grey darken-1">
+        <footer className="page-footer grey darken-2">
           <div className="container">
             <div className="row">
               

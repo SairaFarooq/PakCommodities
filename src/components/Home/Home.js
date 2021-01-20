@@ -109,7 +109,7 @@ class Home extends Component{
                             </div>
                             <div class="card-action">
                                 <p className="white-text">Only 326 USD or 50,000 PKR</p> 
-                                <a class="waves-effect amber darken-3 btn-small"><b>SUBSCRIBE</b></a>
+                                <a class="waves-effect teal accent-4 btn-small"><b>SUBSCRIBE</b></a>
                             </div>
                         </div>
                         </div>
@@ -129,7 +129,7 @@ class Home extends Component{
                             </div>
                             <div class="card-action">
                                 <p className="white-text">Only 200 USD or 30,000 PKR</p> 
-                                <a class="waves-effect amber darken-3 btn-small"><b>SUBSCRIBE</b></a>
+                                <a class="waves-effect teal accent-4 btn-small"><b>SUBSCRIBE</b></a>
                             </div>
                         </div>
                         </div>
@@ -149,7 +149,7 @@ class Home extends Component{
                             </div>
                             <div class="card-action">
                                 <p className="white-text">Only 110 USD or 16500 PKR</p> 
-                                <a class="waves-effect amber darken-3 btn-small"><b>SUBSCRIBE</b></a>
+                                <a class="waves-effect teal accent-4 btn-small"><b>SUBSCRIBE</b></a>
                             </div>
                         </div>
                         </div>
@@ -168,7 +168,7 @@ class Home extends Component{
                             </div>
                             <div class="card-action">
                                 <p className="white-text">Only 38 USD or 5800 PKR</p> 
-                                <a class="waves-effect amber darken-3 btn-small"><b>SUBSCRIBE</b></a>
+                                <a class="waves-effect teal accent-4 btn-small"><b>SUBSCRIBE</b></a>
                             </div>
                         </div>
                         </div>
