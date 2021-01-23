@@ -5,6 +5,8 @@ import Footer from './components/Layout/Footer/Footer';
 import Home from './components/Home/Home';
 import SignIn from './components/Auth/SignIn';
 import SignUp from './components/Auth/SignUp';
+import Dashboard from './components/Dashboard/Dashboard';
+
 import 'materialize-css/dist/css/materialize.min.css';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
 
@@ -20,9 +22,12 @@ function App() {
             <Route exact path ="/" component={Home}/>
             <Route path ="/signin" component={SignIn}/>
             <Route path ="/signup" component={SignUp}/>
+            <Route path ="/dashboard" component={Dashboard} />
+          
+
         </Switch>
 
-        this is after home 
+        
       </div>
       <Footer/>
     </BrowserRouter>
