@@ -6,13 +6,24 @@ class SignUp extends Component{
 
     state={
 
+        username :'',
+        email :'',
+        firstName :'',
+        lastName : '',
+        phone :'',
+        password :'',
+        confirmPassword :''
+
     }
 
     handleChange =(e)=>{
-        console.log(e);
+        this.setState({
+            [e.target.id] : e.target.value
+        });
     }
 
-    handleLogin = (e) =>{
+    handleSignUp = (e) =>{
+        {/* submit the data to API */}
         console.log("FROM SUBMIT");
     }
 
@@ -24,7 +35,7 @@ class SignUp extends Component{
                 
                 <div className="row">
 
-                <form onSubmit={this.handleLogin} className="grey lighten-1 col l4 offset-l1 s12 formstyle">
+                <form onSubmit={this.handleSignUp} className="grey lighten-1 col l4 offset-l1 s12 formstyle">
                     <h5 className="grey-text text-darken-3 center"><b>SIGNUP</b></h5>
 
                     <div className="input-field">

@@ -9,6 +9,7 @@ class Dashboard extends Component{
     }
 
     showTable = (item) =>{
+       
         console.log("Table of this anchor needs to be rendered : ",item)
     }
 
@@ -20,20 +21,22 @@ class Dashboard extends Component{
                     <Sidebar />
                 </div>
    
-                <div class="col l10">
-                        <ul class="tabs">
-                            <li class="tab"><a href="#imports" onClick = {()=> this.showTable("imports")}>IMPORTS</a></li>
-                            <li class="tab"><a class="active" href="#sugar" onClick = {()=> this.showTable("sugar")}>SUGAR</a></li>
-                            <li class="tab"><a href="#pulses" onClick = {()=> this.showTable("pulses")}>PULSES</a></li>
-                            <li class="tab"><a href="#grains" onClick = {()=> this.showTable("grains")}>GRAINS</a></li>
-                            <li class="tab"><a href="#fodderseeds" onClick = {()=> this.showTable("fodderseeds")}>FODDER SEEDS</a></li>
-                            <li class="tab"><a href="#oilseeds" onClick = {()=> this.showTable("oilseeds")}>OIL SEEDS</a></li>
-                            <li class="tab"><a href="#spices" onClick = {()=> this.showTable("spices")}>SPICES</a></li>
-                            <li class="tab"><a href="#guar" onClick = {()=> this.showTable("guar")}>GUAR</a></li>
+
+   
+                <div className="col l10">
+                        <ul className="tabs">
+                            <li className="tab" onClick = {this.showTable("imports")}><a href="#imports" >IMPORTS</a></li>
+                            <li className="tab" onClick = {this.showTable("sugar")}><a href="#sugar" >SUGAR</a></li>
+                            <li className="tab" onClick = {this.showTable("pulses")}><a href="#pulses" >PULSES</a></li>
+                            <li className="tab" onClick = {this.showTable("grains")}><a href="#grains" >GRAINS</a></li>
+                            <li className="tab" onClick = {this.showTable("fodderseeds")}><a href="#fodderseeds" >FODDER SEEDS</a></li>
+                            <li className="tab" onClick = {this.showTable("oilseeds")}><a href="#oilseeds" >OIL SEEDS</a></li>
+                            <li className="tab" onClick = {this.showTable("spices")}><a href="#spices" >SPICES</a></li>
+                            <li className="tab" onClick = {this.showTable("guar")}><a href="#guar" >GUAR</a></li>
                             
                         </ul>
 
-                        <div id="imports" class=" container col s12">
+                        <div id="imports" className=" container col s12">
                             <table>
                                 <thead>
                                 <tr>

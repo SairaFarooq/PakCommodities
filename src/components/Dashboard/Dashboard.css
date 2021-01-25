@@ -42,3 +42,11 @@
     color : #ff8f00 !important;
     padding:3px !important;
 }
+
+
+/* Additem */
+
+.addItemForm{
+    margin-top : 20px !important;
+    height : 400px !important;
+}

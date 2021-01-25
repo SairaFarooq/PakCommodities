@@ -4,14 +4,19 @@ import './SignIn.css';
 class SignIn extends Component{
 
     state={
+        username : '',
+        password : ''
 
     }
 
     handleChange =(e)=>{
-        console.log(e);
+        this.setState({
+            [e.target.id] : e.target.value
+        });
     }
 
-    handleSignUp = (e) =>{
+    handleSignIn = (e) =>{
+        {/* submit the data to API */}
         console.log("FROM SUBMIT");
     }
 
@@ -23,7 +28,7 @@ class SignIn extends Component{
 
                 <div className="row">
 
-                <form onSubmit={this.handleSignUp} className="grey lighten-1 col l4 offset-l4 s12 formstyle">
+                <form onSubmit={this.handleSignIn} className="grey lighten-1 col l4 offset-l4 s12 formstyle">
                     <h5 className="grey-text text-darken-3 center"><b>SIGNIN</b></h5>
 
                     <div className="input-field">
@@ -40,12 +45,8 @@ class SignIn extends Component{
                         <button className="btn teal accent-4 z-depth-0 ">LOGIN</button>
                     </div>
 
-
                 </form>
-
-
-                </div>
-                
+                </div>               
             </div>
         )
     }
