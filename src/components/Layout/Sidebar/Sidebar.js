@@ -23,6 +23,7 @@ class Sidebar extends Component{
                     <li><div class="divider"></div></li>
                     <li className="sidebarLinks"><a className="sidebarItem" href="/addRate">ADD RATE</a> </li>
                     <li><div class="divider"></div></li>
+                    <li className="sidebarLinks"><a className="sidebarItem" href="/addBlog">ADD BLOG</a> </li>
                     <li><div class="divider"></div></li>
                     
                     

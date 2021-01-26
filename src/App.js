@@ -12,6 +12,7 @@ import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import AddItem from './components/Dashboard/AddItem';
 import AddLocation from './components/Dashboard/AddLocation';
 import AddRate from './components/Dashboard/AddRate';
+import AddBlog from './components/Dashboard/AddBlog';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
             <Route path ="/addItem" component={AddItem} />
             <Route path ="/addLocation" component={AddLocation} />
             <Route path ="/addRate" component={AddRate} />
+            <Route path ="/addBlog" component={AddBlog} />
           
 
         </Switch>
