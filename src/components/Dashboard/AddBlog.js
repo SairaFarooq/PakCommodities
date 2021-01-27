@@ -15,16 +15,47 @@ class AddBlog extends Component{
         blogContent : '',
         blogContentUrdu : '',
         blogImage: '',
-        date: ''      
+        date: '' ,
+        subCategoryList : []     
 
     }
 
+    componentDidMount = () => {
+        var today = new Date();
+        var month;
+        if((today.getMonth()+1) < 10) {
+            month = "0"+(today.getMonth() + 1);
+        } else {
+            month = today.getMonth() + 1;
+        }
+        var dateString = today.getFullYear() + "-" + month + "-" + today.getDate()
+        console.log("date string : ", dateString)
+        this.setState({
+            date: dateString
+        });
+
+        //initial subcategory is pulses
+        this.setState({
+            subCategoryList : ['Ali','Bilal', 'Call', 'Dad'] 
+        })
+    }
  
     handleChange =(e)=>{
         console.log(e.target.value);
+
         this.setState({
             [e.target.id] : e.target.value
         });
+
+        if(this.state.category === 'pulses'){
+            this.setState({
+                subCategoryList : ['PulsesAli','pulsesBilal', 'pCall', 'pDad'] 
+            })
+        }else if(this.state.category === 'sugar'){
+            this.setState({
+                subCategoryList : ['sugarAli','sugarBilal', 'sCall', 'sDad'] 
+            })
+        }
     }
 
     /* Add Blog to API */
@@ -48,7 +79,7 @@ class AddBlog extends Component{
                         {/* category */}
                         <div className="input-field">
                             {/* <label htmlFor="category" className="black-text"></label> */}
-                            <select className="browser-default" value="" onChange={this.handleChange}>
+                            <select className="browser-default" id="category" defaultValue={this.state.category} onChange={this.handleChange}>
                                 <option value="" disabled selected>Category</option>
                                 <option value="pulses">Pulses</option>
                                 <option value="sugar">Sugar</option>
@@ -63,11 +94,15 @@ class AddBlog extends Component{
                         {/* subcategory */}
                         <div className="input-field">
                             {/* <label htmlFor="category" className="black-text"></label> */}
-                            <select className="browser-default" value="" onChange={this.handleChange}>
+                            <select className="browser-default" id="subCategory" defaultValue={this.state.subCategory} onChange={this.handleChange}>
                                 <option value="" disabled selected>Sub Category</option>
-                                <option value="redChilli">Red Chilli</option>
-                                <option value="corriander">Corriander</option>
-                                <option value="turmeric">Turmeric</option>
+                                {this.state.subCategoryList.map((subCate,index) =>
+                                     <option value={subCate}>{subCate}</option>
+                                )}
+                                
+                               
+                                {/* <option value="corriander">Corriander</option>
+                                <option value="turmeric">Turmeric</option> */}
                             </select>                           
                         </div>
 
@@ -78,27 +113,27 @@ class AddBlog extends Component{
                         </div>
 
                         {/* Blog Content in English */}
+                        <label htmlFor="blogContent" className="black-text">Blog Content : </label>
                         <div className="input-field">
-                            <label htmlFor="blogContent" className="black-text">Blog Content : </label>
-                            <input type="text" id ="blogContent" onChange={this.handleChange}/>
+                            <textarea id ="blogContent" onChange={this.handleChange}/>
                         </div>
 
                         {/* Blog Content in Urdu */}
+                        <label htmlFor="blogContentUrdu" className="black-text">Blog Content In Urdu: </label>
                         <div className="input-field">
-                            <label htmlFor="blogContentUrdu" className="black-text">Blog Content In Urdu: </label>
-                            <input type="text" id ="blogContentUrdu" onChange={this.handleChange}/>
+                            <textarea id ="blogContentUrdu" onChange={this.handleChange}/>
                         </div>
 
                         {/* Image upload*/}
                         <div className="input-field">
                             <span><label htmlFor="blogImage" className="black-text bold">IMAGE: </label></span>
-                            <input type="file" id ="blogImage" onChange={this.handleChange}/>
+                            <input type="file" accept="image/*" id ="blogImage" onChange={this.handleChange}/>
                         </div>
 
                         {/* date */}
                         <label htmlFor="date" className="black-text">Date : </label>
                         <div className="input-field">
-                            <input type="date" id ="date" defaultValue={this.state.date} onChange={this.handleChange}/>
+                            <input type="date" id ="date" defaultValue={this.state.date} disabled/>
                         </div>
 
                         {/* post button */}

@@ -7,6 +7,34 @@ import './Home.css';
 class Home extends Component{
     
     state={
+        loadTableFor : '',
+        tableData : []
+
+    }
+
+    componentDidMount = () =>{
+
+        ///* API call to fetch table data : by default for imports */
+        this.setState({
+            tableData : [
+                            {item : 'Pulses', location : 'bahrain', description : 'hello world', date : '2021-01-27', rate : '100', percent: '10' },
+                            {item : 'Pulses', location : 'bahrain', description : 'hello world', date : '2021-01-27', rate : '100', percent: '10' }
+                        ]
+        })
+    }
+
+    showTable = (item) =>{
+      
+        console.log("Table of this anchor needs to be rendered : ",item)
+        /* API call for table data on click of tabs */
+        this.setState({
+            tableData : [
+                            {item : item, location : 'bahrain', description : 'hello world', date : '2021-01-27', rate : '100', percent: '10' },
+                            {item : item, location : 'bahrain', description : 'hello world', date : '2021-01-27', rate : '100', percent: '10' }
+                        ]
+        })
+
+
 
     }
 
@@ -24,15 +52,14 @@ class Home extends Component{
                 <div className="container">
                     {/* //Tabss : View table*/}
                     <div className="row">
-                        <ul class="tabs">
-                            <li class="tab col l1"><a href="#imports">IMPORTS</a></li>
-                            <li class="tab col l1"><a class="active" href="#sugar">SUGAR</a></li>
-                            <li class="tab col l1"><a href="#pulses">PULSES</a></li>
-                            <li class="tab col l1"><a href="#grains">GRAINS</a></li>
-                            <li class="tab col l2"><a href="#fodderseeds">FODDER SEEDS</a></li>
-                            <li class="tab col l2"><a href="#oilseeds">OIL SEEDS</a></li>
-                            <li class="tab col l1"><a href="#spices">SPICES</a></li>
-                            <li class="tab col l2"><a href="#guar">GUAR</a></li>
+                        <ul className="tabs">
+                            <li className="tab col l1" ><a href="#" onClick = {()=>this.showTable("imports")}>IMPORT</a></li>
+                            <li className="tab col l1" ><a href="#" onClick = {()=>this.showTable("pulses")}>PULSES</a></li>
+                            <li className="tab col l1" ><a href="#" onClick = {()=>this.showTable("grains")}>GRAINS</a></li>
+                            <li className="tab col l2" ><a href="#" onClick = {()=>this.showTable("fodderseeds")}>FODDER SEEDS</a></li>
+                            <li className="tab col l2" ><a href="#" onClick = {()=>this.showTable("oilseeds")}>OIL SEEDS</a></li>
+                            <li className="tab col l2" ><a href="#" onClick = {()=>this.showTable("spices")}>SPICES</a></li>
+                            <li className="tab col l2" ><a href="#" onClick = {()=>this.showTable("guar")}>GUAR</a></li>
                             
                         </ul>
 
@@ -50,41 +77,19 @@ class Home extends Component{
                                 </thead>
 
                                 <tbody>
-                                <tr>
-                                    <td>Alvin</td>
-                                    <td>Eclair</td>
-                                    <td>$0.87</td>
-                                    <td>$0.87</td>
-                                    <td>$0.87</td>
-                                    <td>$0.87</td>
-                                </tr>
-                                <tr>
-                                    <td>Alan</td>
-                                    <td>Jellybean</td>
-                                    <td>$3.76</td>
-                                    <td>$0.87</td>
-                                    <td>$0.87</td>
-                                    <td>$0.87</td>
-                                </tr>
-                                <tr>
-                                    <td>Jonathan</td>
-                                    <td>Lollipop</td>
-                                    <td>$7.00</td>
-                                    <td>$0.87</td>
-                                    <td>$0.87</td>
-                                    <td>$0.87</td>
-                                </tr>
+                                {this.state.tableData.map((item,index) =>
+                                        <tr key={index}>
+                                            <td>{item.item}</td>
+                                            <td>{item.location}</td>
+                                            <td>{item.description}</td>
+                                            <td>{item.date}</td>
+                                            <td>{item.rate}</td>
+                                            <td>{item.percent}</td>
+                                        </tr>                                
+                                )}    
                                 </tbody>
                             </table>
                         </div>
-
-                        <div id="sugar" class="col s12"><p>sugar</p></div>
-                        <div id="pulses" class="col s12"><p>pulses</p></div>
-                        <div id="grains" class="col s12"><p>grains</p></div>
-                        <div id="fodderseeds" class="col s12"><p>fodder seeds</p></div>
-                        <div id="oilseeds" class="col s12"><p>oil seeds</p></div>
-                        <div id="spices" class="col s12"><p>spices</p></div>
-                        <div id="guar" class="col s12"><p>guar</p></div>
                     </div>
 
                     <br/>
@@ -103,7 +108,7 @@ class Home extends Component{
                                     <li className="bullets">Access to Real-Time Rates and details</li>
                                     <li className="bullets">Access to minute by minute updates</li>
                                     <li className="bullets">Access to Comments of Trading Experts, local traders, indenters, brokers</li>
-                                    <li className="bullets">You can call our Trading Experts from 4pm-8pm (pakistani time)</li>
+                                    <li className="bullets">You can call our Trading Experts from 4pm-8pm (PST)</li>
                                     <li className="bullets">Access Time for 12 months</li>
                                 </ul>
                             </div>
@@ -123,7 +128,7 @@ class Home extends Component{
                                     <li className="bullets">Access to Real-Time Rates and details</li>
                                     <li className="bullets">Access to minute by minute updates</li>
                                     <li className="bullets">Access to Comments of Trading Experts, local traders, indenters, brokers</li>
-                                    <li className="bullets">You can call our Trading Experts from 4pm-8pm (pakistani time)</li>
+                                    <li className="bullets">You can call our Trading Experts from 4pm-8pm (PST)</li>
                                     <li className="bullets">Access Time for 6 months</li>
                                 </ul>
                             </div>
@@ -143,7 +148,7 @@ class Home extends Component{
                                     <li className="bullets">Access to Real-Time Rates and details</li>
                                     <li className="bullets">Access to minute by minute updates</li>
                                     <li className="bullets">Access to Comments of Trading Experts, local traders, indenters, brokers</li>
-                                    <li className="bullets">You can call our Trading Experts from 4pm-8pm (pakistani time)</li>
+                                    <li className="bullets">You can call our Trading Experts from 4pm-8pm (PST)</li>
                                     <li className="bullets">Access Time for 3 months</li>
                                 </ul>
                             </div>
@@ -162,7 +167,7 @@ class Home extends Component{
                                     <li className="bullets">Access to Real-Time Rates and details</li>
                                     <li className="bullets">Access to minute by minute updates</li>
                                     <li className="bullets">Access to Comments of Trading Experts, local traders, indenters, brokers</li>
-                                    <li className="bullets">You can call our Trading Experts from 4pm-8pm (pakistani time)</li>
+                                    <li className="bullets">You can call our Trading Experts from 4pm-8pm (PST)</li>
                                     <li className="bullets">Access Time for 1 months</li>
                                 </ul>
                             </div>

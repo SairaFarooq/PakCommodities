@@ -36,9 +36,10 @@ class AddItem extends Component{
                     <form onSubmit={this.addItem()} className="grey lighten-1 col l4 offset-l4 s12 addItemForm">
                         <h5 className="grey-text text-darken-3 center"><b>ADD AN ITEM</b></h5>
 
+                        {/* Select a catgeory */}
                         <div className="input-field">
                             {/* <label htmlFor="category" className="black-text"></label> */}
-                            <select className="browser-default" value="" onChange={this.handleChange}>
+                            <select className="browser-default" defaultValue={this.state.category} onChange={this.handleChange}>
                                 <option value="" disabled selected>Category</option>
                                 <option value="pulses">Pulses</option>
                                 <option value="sugar">Sugar</option>
@@ -50,16 +51,19 @@ class AddItem extends Component{
                             </select>                           
                         </div>
 
+                         {/* Item name in english*/}
                         <div className="input-field">
                             <label htmlFor="itemName" className="black-text">Item Name : </label>
                             <input type="text" id ="itemName" onChange={this.handleChange}/>
                         </div>
 
+                         {/* Item name in urdu */}
                         <div className="input-field">
                             <label htmlFor="itemNameUrdu" className="black-text">Item Name In Urdu: </label>
                             <input type="text" id ="itemNameUrdu" onChange={this.handleChange}/>
                         </div>
-
+                        
+                         {/* Add button */}
                         <div className="input-field">
                             <button className="btn teal accent-4 z-depth-0 center">ADD</button>
                         </div>

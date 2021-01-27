@@ -10,7 +10,7 @@ class Sidebar extends Component{
     render(){
         return(
            
-            <div className="sidebar">
+            <div className="sidebar" style={{width: "200px", height:window.innerHeight}}>
                 <ul id="slide-out" className="side-nav grey darken-1">
                     
                     <li className="sidebarLinks"><a className="sidebarItem" href="/dashboard">HOME</a></li>
@@ -24,14 +24,10 @@ class Sidebar extends Component{
                     <li className="sidebarLinks"><a className="sidebarItem" href="/addRate">ADD RATE</a> </li>
                     <li><div class="divider"></div></li>
                     <li className="sidebarLinks"><a className="sidebarItem" href="/addBlog">ADD BLOG</a> </li>
-                    <li><div class="divider"></div></li>
-                    
-                    
+                    <li><div class="divider"></div></li>                 
                     
                 </ul>
-            </div>     
-
-            
+            </div>        
 
             )
     }

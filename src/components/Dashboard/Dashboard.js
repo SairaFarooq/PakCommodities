@@ -1,16 +1,127 @@
 import {Component} from 'react';
 import './Dashboard.css';
+import {Link} from 'react-router-dom';
 import Sidebar from '../Layout/Sidebar/Sidebar';
+import AddRate from './AddRate';
+
 
 class Dashboard extends Component{
     
     state={
 
+        loadTableFor : '',
+        tableData : [],
+        openEditDialog: false,
+        openDeleteDialog: false,
+        openDescriptionDialog: false,
+        openHideDialog: false,
+        selectedItem: '',
+        selectedIndex: null,
+        date : ''  
     }
 
+    componentDidMount = ()=>{
+        //set current date
+        var today = new Date();
+        var month;
+        if((today.getMonth()+1) < 10) {
+            month = "0"+(today.getMonth() + 1);
+        } else {
+            month = today.getMonth() + 1;
+        }
+        var dateString = today.getFullYear() + "-" + month + "-" + today.getDate()
+        console.log("date string : ", dateString)
+        this.setState({
+            date: dateString
+        })
+        ///* API call to fetch table data : by default for imports */
+        this.setState({
+            tableData : [
+                            {item : 'Pulses', location : 'bahrain', description : 'hello world', date : '2021-01-27', rate : '100', percent: '10' },
+                            {item : 'Pulses', location : 'bahrain', description : 'hello world', date : '2021-01-27', rate : '100', percent: '10' }
+                        ]
+        })
+
+    } 
+
     showTable = (item) =>{
-       
+      
         console.log("Table of this anchor needs to be rendered : ",item)
+        /* API call for table data on click of tabs */
+        this.setState({
+            tableData : [
+                            {item : item, location : 'bahrain', description : 'hello world', date : '2021-01-27', rate : '100', percent: '10' },
+                            {item : item, location : 'bahrain', description : 'hello world', date : '2021-01-27', rate : '100', percent: '10' }
+                        ]
+        })
+
+
+
+    }
+
+    openDialog = (action, index) => {
+        this.setState({
+            selectedItem: this.state.tableData[index],
+            selectedIndex: index
+        })
+        if(action === 'edit') {
+            this.setState({
+                openEditDialog: true
+            })
+        } else if(action === 'delete') {
+            this.setState({
+                openDeleteDialog: true
+            })
+        } else if(action === 'description') {
+            this.setState({
+                openDescriptionDialog: true
+            })
+        } else if(action === 'hideIcon') {
+            this.setState({
+                openHideDialog: true
+            })
+        }
+    }
+
+    closeDialog = (action) => {
+        if(action === 'edit') {
+            this.setState({
+                openEditDialog: false
+            })
+        } else if(action === 'delete') {
+            this.setState({
+                openDeleteDialog: false
+            })
+        } else if(action === 'description') {
+            this.setState({
+                openDescriptionDialog: false
+            })
+        } else if(action === 'hideIcon') {
+            this.setState({
+                openHideDialog: false
+            })
+        }
+    }
+
+    edit = () => {
+        var index = this.state.selectedIndex;
+        console.log("Index from edit : ", this.state.tableData[index]);
+    
+    }
+
+    delete =(index)=>{
+        console.log("Index from delete : ", index)
+
+    }
+
+    description =(index)=>{
+        console.log("Index from description : ", index)
+
+    }
+
+    hideIcon =(index)=>{
+        console.log("Index from hideIcon : ", index)
+
     }
 
     render(){
@@ -21,28 +132,26 @@ class Dashboard extends Component{
                     <Sidebar />
                 </div>
    
-
-   
+                {/* Tabs for viewing table */}
                 <div className="col l10">
                         <ul className="tabs">
-                            <li className="tab" onClick = {this.showTable("imports")}><a href="#imports" >IMPORTS</a></li>
-                            <li className="tab" onClick = {this.showTable("sugar")}><a href="#sugar" >SUGAR</a></li>
-                            <li className="tab" onClick = {this.showTable("pulses")}><a href="#pulses" >PULSES</a></li>
-                            <li className="tab" onClick = {this.showTable("grains")}><a href="#grains" >GRAINS</a></li>
-                            <li className="tab" onClick = {this.showTable("fodderseeds")}><a href="#fodderseeds" >FODDER SEEDS</a></li>
-                            <li className="tab" onClick = {this.showTable("oilseeds")}><a href="#oilseeds" >OIL SEEDS</a></li>
-                            <li className="tab" onClick = {this.showTable("spices")}><a href="#spices" >SPICES</a></li>
-                            <li className="tab" onClick = {this.showTable("guar")}><a href="#guar" >GUAR</a></li>
+                            <li className="tab" ><a href="#" onClick = {()=>this.showTable("imports")}>IMPORT</a></li>
+                            <li className="tab" ><a href="#" onClick = {()=>this.showTable("pulses")}>PULSES</a></li>
+                            <li className="tab" ><a href="#" onClick = {()=>this.showTable("grains")}>GRAINS</a></li>
+                            <li className="tab" ><a href="#" onClick = {()=>this.showTable("fodderseeds")}>FODDER SEEDS</a></li>
+                            <li className="tab" ><a href="#" onClick = {()=>this.showTable("oilseeds")}>OIL SEEDS</a></li>
+                            <li className="tab" ><a href="#" onClick = {()=>this.showTable("spices")}>SPICES</a></li>
+                            <li className="tab" ><a href="#" onClick = {()=>this.showTable("guar")}>GUAR</a></li>
                             
                         </ul>
 
-                        <div id="imports" className=" container col s12">
+                        <div className=" container col s12">
                             <table>
                                 <thead>
                                 <tr>
                                     <th>ITEM</th>
                                     <th>LOCATION</th>
-                                    <th>DESC</th>
+                                    <th>DESCRIPTION</th>
                                     <th>DATE</th>
                                     <th>RATE</th>
                                     <th>%</th>
@@ -51,39 +160,79 @@ class Dashboard extends Component{
                                 </thead>
 
                                 <tbody>
-                                <tr>
-                                    <td>Alvin</td>
-                                    <td>Eclair</td>
-                                    <td>$0.87</td>
-                                    <td>$0.87</td>
-                                    <td>$0.87</td>
-                                    <td>$0.87</td>
-                                    <td><i class="material-icons"><a className="edit" href="">create</a></i>
-                                        <i class="material-icons"><a className="delete" href="">delete</a></i>
-                                        <i class="material-icons"><a className="description" href="">description</a></i>
-                                        <i class="material-icons"><a className="hideicon" href="">visibility_off</a></i>
-                                    </td>
-                                  
-                                </tr>
-                               
+                                    { this.state.tableData.map((item,index) =>
+                                        <tr key={index}>
+                                            <td>{item.item}</td>
+                                            <td>{item.location}</td>
+                                            <td>{item.description}</td>
+                                            <td>{item.date}</td>
+                                            <td>{item.rate}</td>
+                                            <td>{item.percent}</td>
+                                            <td><i class="material-icons"><a className="edit" href="#" onClick = {() => this.openDialog('edit', index)}>create</a></i>
+                                                <i class="material-icons"><a className="delete" href="#" onClick = {() => this.openDialog('delete', index)}>delete</a></i>
+                                                <i class="material-icons"><a className="description" href="#" onClick = {() => this.openDialog('description', index)}>description</a></i>
+                                                <i class="material-icons"><a className="hideicon" href="#" onClick = {() => this.openDialog('hideIcon', index)}>visibility_off</a></i>
+                                            </td>
+                                        </tr>                                
+                                    )}                                
                                 </tbody>
                             </table>
                         </div>
-
-                        {/* <div id="sugar" class="col s12"><p>sugar</p></div>
-                        <div id="pulses" class="col s12"><p>pulses</p></div>
-                        <div id="grains" class="col s12"><p>grains</p></div>
-                        <div id="fodderseeds" class="col s12"><p>fodder seeds</p></div>
-                        <div id="oilseeds" class="col s12"><p>oil seeds</p></div>
-                        <div id="spices" class="col s12"><p>spices</p></div>
-                        <div id="guar" class="col s12"><p>guar</p></div> */}
                 </div>
-                                   
-            </div>     
 
-            
+                { this.state.openEditDialog ? 
+                    <div id="modal1" className="modal">    
+                        <form onSubmit={this.edit()} className="form-edit">
+                            <h5 className="grey-text text-darken-3 center"><b>Edit Item</b></h5>
 
-            )
+                            {/* Select the category of product */}
+                            <div className="input-field">
+                                {/* <label htmlFor="category" className="black-text"></label> */}
+                                <select className="browser-default" defaultValue={this.state.selectedItem.item} onChange={this.handleChange}>
+                                    <option value="pulses">Pulses</option>
+                                    <option value="kabuliChickPeas">kabuli Chick Peas</option>
+                                </select>                           
+                            </div>
+
+                            {/* Select Location */}
+                            <div className="input-field">
+                                {/* <label htmlFor="category" className="black-text"></label> */}
+                                <select className="browser-default" defaultValue={this.state.selectedItem.location} onChange={this.handleChange}>
+                                    <option value="pakistan">Pakistan</option>
+                                    <option value="bahrain">Bahrain</option>
+                                </select>                           
+                            </div>
+
+                            {/* Add rate */}
+                            <label htmlFor="rate" className="black-text">Rate : </label>
+                            <div className="input-field">                                  
+                                <input type="number" id ="rate" value={this.state.selectedItem.rate} onChange={this.handleChange}/>
+                            </div>
+
+                            {/* Add description*/}
+                            <label htmlFor="description" className="black-text">Description: </label>
+                            <div className="input-field">
+                                <input type="text" id ="description" value={this.state.selectedItem.description} onChange={this.handleChange}/>
+                            </div>
+
+                            {/* Date */}
+                            <label htmlFor="date" className="black-text">Date : </label>
+                            <div className="input-field">
+
+                                <input type="date" id ="date" defaultValue={this.state.date} disabled/>
+                            </div>
+
+                            {/*Add button */}
+                            <div className="input-field right">
+                                <button className="btn grey darken-2 z-depth-0 editbtn" onClick={()=>this.closeDialog('edit')}>CANCEL</button>
+                                <button className="btn teal accent-4 z-depth-0 editbtn">UPDATE</button>
+                            </div>                            
+                        </form>
+                       
+                    </div> : <div></div>
+                }                         
+            </div>   
+        )
     }
 }
 
