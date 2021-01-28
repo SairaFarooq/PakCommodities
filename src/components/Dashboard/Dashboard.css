@@ -45,10 +45,16 @@
 }
 
 .modal {
+    position: absolute!important;
     width: 30%!important;
     display: block!important;
+    z-index: 1003 !important;
 }
-
+.modal-overlay{
+    z-index: 1002 !important;
+    display: block !important;
+    opacity: 0.5!important;
+}
 .form-edit {
     padding: 0 10%;
 }

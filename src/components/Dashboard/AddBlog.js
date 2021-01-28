@@ -47,11 +47,11 @@ class AddBlog extends Component{
             [e.target.id] : e.target.value
         });
 
-        if(this.state.category === 'pulses'){
+        if(e.target.value === 'pulses'){
             this.setState({
                 subCategoryList : ['PulsesAli','pulsesBilal', 'pCall', 'pDad'] 
             })
-        }else if(this.state.category === 'sugar'){
+        }else if(e.target.value === 'sugar'){
             this.setState({
                 subCategoryList : ['sugarAli','sugarBilal', 'sCall', 'sDad'] 
             })

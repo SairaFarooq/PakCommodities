@@ -181,8 +181,9 @@ class Dashboard extends Component{
                 </div>
 
                 { this.state.openEditDialog ? 
+                <div>
                     <div id="modal1" className="modal">    
-                        <form onSubmit={this.edit()} className="form-edit">
+                        <form onSubmit={this.edit()} className="form-edit modal-content">
                             <h5 className="grey-text text-darken-3 center"><b>Edit Item</b></h5>
 
                             {/* Select the category of product */}
@@ -229,6 +230,7 @@ class Dashboard extends Component{
                             </div>                            
                         </form>
                        
+                    </div> <div class="modal-overlay"></div> 
                     </div> : <div></div>
                 }                         
             </div>   
