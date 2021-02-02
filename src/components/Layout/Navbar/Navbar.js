@@ -14,6 +14,7 @@ const Navbar = () =>{
                     <li><a className='dropdown-button btn teal accent-4 categories' data-beloworigin="true" href='#' data-activates='sugarDropDown'>SUGAR/GUR<i className="material-icons right">arrow_drop_down</i></a></li>
                     <li><a className='dropdown-button btn teal accent-4 categories' data-beloworigin="true" href='#' data-activates='guarDropDown'>GUAR<i className="material-icons right">arrow_drop_down</i></a></li>
                     <li><a className='dropdown-button btn teal accent-4 categories' data-beloworigin="true" href='#' data-activates='oilSeedsDropDown'>OIL SEEDS<i className="material-icons right">arrow_drop_down</i></a></li>
+                    <li><a className='btn teal accent-4 categories'  href='/historicalRates'>RATES</a></li>
 
                 </ul>
 

@@ -6,7 +6,7 @@ import Home from './components/Home/Home';
 import SignIn from './components/Auth/SignIn';
 import SignUp from './components/Auth/SignUp';
 import Dashboard from './components/Dashboard/Dashboard';
-
+import HistoricalRates from './components/Home/HistoricalRates';
 import 'materialize-css/dist/css/materialize.min.css';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import AddItem from './components/Dashboard/AddItem';
@@ -31,6 +31,8 @@ function App() {
             <Route path ="/addLocation" component={AddLocation} />
             <Route path ="/addRate" component={AddRate} />
             <Route path ="/addBlog" component={AddBlog} />
+            <Route path ="/historicalRates" component={HistoricalRates} />
+            
           
 
         </Switch>

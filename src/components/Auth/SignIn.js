@@ -17,6 +17,7 @@ class SignIn extends Component{
 
     handleSignIn = (e) =>{
         {/* submit the data to API */}
+        e.preventDefault();
         console.log("FROM SUBMIT");
     }
 
