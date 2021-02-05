@@ -43,8 +43,8 @@ class Home extends Component{
             <div>
                 <div className="carousel carousel-slider" data-indicators="true" >
                     
-                    <a className="carousel-item" href="#one!"><img src={spices}/></a>
-                    <a className="carousel-item" href="#one!"><img src={grains}/></a>
+                    {/* <a className="carousel-item" href="#one!"><img src={spices}/></a>
+                    <a className="carousel-item" href="#one!"><img src={grains}/></a> */}
                     <a className="carousel-item" href="#one!"><img src={pulses}/></a>
                     
                 </div>
@@ -63,8 +63,8 @@ class Home extends Component{
                             
                         </ul>
 
-                        <div id="imports" class=" container col s12">
-                            <table>
+                        <div id="imports" class="container col s12">
+                            <table className="homeTable">
                                 <thead>
                                 <tr>
                                     <th>ITEM</th>

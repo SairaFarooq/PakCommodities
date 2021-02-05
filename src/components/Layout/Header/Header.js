@@ -3,6 +3,12 @@ import logopc from '../../../logopc.PNG';
 import logo2 from '../../../assets/logo2.png';
 import './Header.css';
 import {NavLink, Link} from 'react-router-dom';
+
+
+function toggleTheme() {
+    console.log('Theme toggle clicked')
+}
+
 const Header = () =>{
     return(
         
@@ -14,6 +20,7 @@ const Header = () =>{
                {/* <Link to="/" className="brand-logo">PAK COMMODITIES <br/> <div class="sub-heading">FASTEST NEWS UPDATES OF COMMODITIES IN PAKISTAN </div></Link> */}
                 
                 <ul className="right">
+                    <li><i class="large material-icons"><a className="lightTheme" href="#" onClick={toggleTheme}>brightness_4</a></i></li>
                     <li><NavLink to="/blog" className="uppernav">BLOG</NavLink></li>
                     <li><NavLink to="/news" className="uppernav">NEWSROOM</NavLink></li>
                     <li><NavLink to="/signin" className="uppernav">LOGIN</NavLink></li>

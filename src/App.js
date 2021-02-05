@@ -14,12 +14,14 @@ import AddLocation from './components/Dashboard/AddLocation';
 import AddRate from './components/Dashboard/AddRate';
 import AddBlog from './components/Dashboard/AddBlog';
 import AddCategory from './components/Dashboard/AddCategory';
+import ThemeContextProvider from './context/ThemeContext';
 
 function App() {
   return (
     <BrowserRouter>
       <div className="App">
         
+        <ThemeContextProvider>
         <Header />
         <Navbar />
 
@@ -39,7 +41,7 @@ function App() {
 
         </Switch>
 
-        
+        </ThemeContextProvider>
       </div>
       <Footer/>
     </BrowserRouter>

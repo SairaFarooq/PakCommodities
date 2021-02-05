@@ -32,3 +32,8 @@
     list-style-type: disc !important;
     margin-left:1px;
 }
+
+/* Table */
+.homeTable{
+    color : red !important;
+}

@@ -187,7 +187,6 @@ class AddBlog extends Component{
                     </form> :
 
                     // form in urdu
-
                     <form onSubmit={this.addBlog()} className="grey lighten-1 col l4 offset-l4 s12 addBlogForm">
                     <h5 className="grey-text text-darken-3 center"><b>POST A BLOG IN URDU</b></h5>
                     {/* category */}

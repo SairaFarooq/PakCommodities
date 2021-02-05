@@ -37,3 +37,8 @@ nav .brand-logo{
     background : yellow;
     float : right
 }
+
+.lightTheme{
+    color : black !important;
+    padding:3px !important;
+}
