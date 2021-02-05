@@ -17,7 +17,9 @@ class Sidebar extends Component{
                     <li><div class="divider"></div></li>
                     <li className="sidebarLinks"><a className="sidebarItem" href="/allRates">ALL RATES</a> </li>
                     <li><div class="divider"></div></li>
-                    <li className="sidebarLinks"><a className="sidebarItem" href="/addItem">ADD ITEM</a> </li>
+                    <li className="sidebarLinks"><a className="sidebarItem" href="/addCategory">ADD CATEGORY</a> </li>
+                    <li><div class="divider"></div></li>
+                    <li className="sidebarLinks"><a className="sidebarItem" href="/addProduct">ADD PRODUCT</a> </li>
                     <li><div class="divider"></div></li>
                     <li className="sidebarLinks"><a className="sidebarItem" href="/addLocation">ADD LOCATION</a> </li>
                     <li><div class="divider"></div></li>

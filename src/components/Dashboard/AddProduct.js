@@ -2,7 +2,7 @@ import {Component} from 'react';
 import Sidebar from '../Layout/Sidebar/Sidebar';
 import './Dashboard.css';
 
-class AddItem extends Component{ 
+class AddProduct extends Component{ 
     state={
 
         category : '',
@@ -20,7 +20,7 @@ class AddItem extends Component{
     }
 
     /* Add item to API */
-    addItem =()=>{
+    addProduct =()=>{
         
     }
 
@@ -33,8 +33,8 @@ class AddItem extends Component{
                 </div>
    
                 <div className="col l10">
-                    <form onSubmit={this.addItem()} className="grey lighten-1 col l4 offset-l4 s12 addItemForm">
-                        <h5 className="grey-text text-darken-3 center"><b>ADD AN ITEM</b></h5>
+                    <form onSubmit={this.addProduct()} className="grey lighten-1 col l4 offset-l4 s12 addItemForm">
+                        <h5 className="grey-text text-darken-3 center"><b>ADD A PRODUCT</b></h5>
 
                         {/* Select a catgeory */}
                         <div className="input-field">
@@ -53,14 +53,14 @@ class AddItem extends Component{
 
                          {/* Item name in english*/}
                         <div className="input-field">
-                            <label htmlFor="itemName" className="black-text">Item Name : </label>
-                            <input type="text" id ="itemName" onChange={this.handleChange}/>
+                            <label htmlFor="productName" className="black-text">Product Name : </label>
+                            <input type="text" id ="productName" onChange={this.handleChange}/>
                         </div>
 
-                         {/* Item name in urdu */}
+                         {/* product name in urdu */}
                         <div className="input-field">
-                            <label htmlFor="itemNameUrdu" className="black-text">Item Name In Urdu: </label>
-                            <input type="text" id ="itemNameUrdu" onChange={this.handleChange}/>
+                            <label htmlFor="productNameUrdu" className="black-text">Product Name In Urdu: </label>
+                            <input type="text" id ="productNameUrdu" onChange={this.handleChange}/>
                         </div>
                         
                          {/* Add button */}
@@ -74,4 +74,4 @@ class AddItem extends Component{
         )}
 }
 
-export default AddItem
+export default AddProduct

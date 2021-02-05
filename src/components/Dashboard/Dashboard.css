@@ -69,7 +69,11 @@ form{
     margin-top : 20px !important;
     /* height : 400px !important; */
 }
+/* Add category form */
+.addCategory{
 
+    /* height: 300px !important; //not working */
+}
 /* Add Blog */
 
 textarea {

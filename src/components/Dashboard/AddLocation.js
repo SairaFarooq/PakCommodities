@@ -1,6 +1,7 @@
 import {Component} from 'react';
 import Sidebar from '../Layout/Sidebar/Sidebar';
 import './Dashboard.css';
+import {addLocation} from '../../services/location.service';
 
 class AddLocation extends Component{
 
@@ -20,11 +21,30 @@ class AddLocation extends Component{
         });
     }
 
-    /* Add item to API */
-    addLocation =()=>{
-        
+   /* Add item (API call) */
+   addLocationItem = async (e) =>{
+    e.preventDefault();
+
+    var addThisLocation = {
+        locationNameEng : this.state.locationName,
+        locationNameUrdu : this.state.locationNameUrdu,
+        locationType : this.state.locationType
     }
 
+    //saving data in mongo
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json',
+                    'Accept': 'application/json' },
+        body: JSON.stringify(addThisLocation)
+    };
+    const response = await addLocation(requestOptions);
+    const res = await response.json();
+    console.log("response after addLocation", res)
+
+    
+    
+}
     render(){
         return(
            
@@ -34,7 +54,7 @@ class AddLocation extends Component{
                 </div>
    
                 <div className="col l10">
-                    <form onSubmit={this.addLocation()} className="grey lighten-1 col l4 offset-l4 s12 addLocationForm">
+                    <form onSubmit={this.addLocationItem} className="grey lighten-1 col l4 offset-l4 s12 addLocationForm">
                         <h5 className="grey-text text-darken-3 center"><b>ADD LOCATION</b></h5>
 
                          {/* Select Location */}
