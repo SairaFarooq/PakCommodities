@@ -1,22 +1,24 @@
 import {Component} from 'react';
 import Sidebar from '../Layout/Sidebar/Sidebar';
 import './Dashboard.css';
+import {getAllCategories}from '../../services/category.service';
 
-var date = new Date();
 
 class AddBlog extends Component{ 
 
     
     state={
 
+        formInUrdu : false,
         category : '',
-        subCategory:'',
+        product:'',
         blogTitle :'',
         blogContent : '',
         blogContentUrdu : '',
         blogImage: '',
         date: '' ,
-        subCategoryList : []     
+        productList : [],
+        categories : []     
 
     }
 
@@ -38,6 +40,17 @@ class AddBlog extends Component{
         this.setState({
             subCategoryList : ['Ali','Bilal', 'Call', 'Dad'] 
         })
+
+        //fetch categories
+        this.fetchAllCategories();
+    }
+
+    // English/Urdu Form
+    onToggle =(e)=>{
+        this.setState({
+            formInUrdu : !this.state.formInUrdu
+        })
+
     }
  
     handleChange =(e)=>{
@@ -49,16 +62,40 @@ class AddBlog extends Component{
 
         if(e.target.value === 'pulses'){
             this.setState({
-                subCategoryList : ['PulsesAli','pulsesBilal', 'pCall', 'pDad'] 
+                productList : ['PulsesAli','pulsesBilal', 'pCall', 'pDad'] 
             })
         }else if(e.target.value === 'sugar'){
             this.setState({
-                subCategoryList : ['sugarAli','sugarBilal', 'sCall', 'sDad'] 
+                productList : ['sugarAli','sugarBilal', 'sCall', 'sDad'] 
             })
         }
     }
 
-    /* Add Blog to API */
+    // fetch All categories 
+    fetchAllCategories  =async() =>{
+
+        const requestOptions = {
+                method: 'GET',
+                headers: { 'Content-Type': 'application/json' },
+            };
+        const response = await getAllCategories(requestOptions);
+        const res = await response.json();
+        console.log("Response ", res);
+        
+      
+            var categories = [];
+            for(let item of res){
+                    categories.push(item)
+                }
+
+                this.setState({ 
+                    categories: categories, 
+                     
+                 });
+            
+    }
+
+    /* Add a Blog*/
     addBlog =()=>{
         
     }
@@ -73,31 +110,43 @@ class AddBlog extends Component{
                 </div>
    
                 <div className="col l10">
-                    {/* <form action="add-post.php" method="post" enctype="multipart/form-data">*/}
+                    {/* toggle button for english/urdu forms */}
+                <div class="switch">
+                    <label>
+                         English
+                        <input type="checkbox" checked={this.state.formInUrdu} onChange={this.onToggle}/>
+                        <span class="lever"></span>
+                         Urdu
+                    </label>
+                </div>
+
+                 {/* <form action="add-post.php" method="post" enctype="multipart/form-data">*/}
+                {/* form in English */} 
+                {!this.state.formInUrdu ? 
+                   
                     <form onSubmit={this.addBlog()} className="grey lighten-1 col l4 offset-l4 s12 addBlogForm">
-                        <h5 className="grey-text text-darken-3 center"><b>POST A BLOG</b></h5>
+                        <h5 className="grey-text text-darken-3 center"><b>POST A BLOG IN ENGLISH</b></h5>
                         {/* category */}
                         <div className="input-field">
                             {/* <label htmlFor="category" className="black-text"></label> */}
                             <select className="browser-default" id="category" defaultValue={this.state.category} onChange={this.handleChange}>
                                 <option value="" disabled selected>Category</option>
-                                <option value="pulses">Pulses</option>
-                                <option value="sugar">Sugar</option>
-                                <option value="grains">Grains</option>
-                                <option value="fodderSeeds">Fodder Seeds</option>
-                                <option value="oilSeeds">Oil Seeds</option>
-                                <option value="guar">Guar</option>
-                                <option value="spices">Spices</option>
+                                {
+                                    this.state.categories.map((item)=>
+                                   
+                                        <option value={item.categoryNameEng}>{item.categoryNameEng}</option>
+                                    )
+                                }
                             </select>                           
                         </div>
 
-                        {/* subcategory */}
+                        {/* product */}
                         <div className="input-field">
                             {/* <label htmlFor="category" className="black-text"></label> */}
-                            <select className="browser-default" id="subCategory" defaultValue={this.state.subCategory} onChange={this.handleChange}>
-                                <option value="" disabled selected>Sub Category</option>
-                                {this.state.subCategoryList.map((subCate,index) =>
-                                     <option value={subCate}>{subCate}</option>
+                            <select className="browser-default" id="product" defaultValue={this.state.product} onChange={this.handleChange}>
+                                <option value="" disabled selected>Product</option>
+                                {this.state.productList.map((product,index) =>
+                                     <option value={product}>{product}</option>
                                 )}
                                 
                                
@@ -118,12 +167,6 @@ class AddBlog extends Component{
                             <textarea id ="blogContent" onChange={this.handleChange}/>
                         </div>
 
-                        {/* Blog Content in Urdu */}
-                        <label htmlFor="blogContentUrdu" className="black-text">Blog Content In Urdu: </label>
-                        <div className="input-field">
-                            <textarea id ="blogContentUrdu" onChange={this.handleChange}/>
-                        </div>
-
                         {/* Image upload*/}
                         <div className="input-field">
                             <span><label htmlFor="blogImage" className="black-text bold">IMAGE: </label></span>
@@ -141,7 +184,72 @@ class AddBlog extends Component{
                             <button className="btn teal accent-4 z-depth-0 center">POST</button>
                         </div>
 
-                    </form>
+                    </form> :
+
+                    // form in urdu
+
+                    <form onSubmit={this.addBlog()} className="grey lighten-1 col l4 offset-l4 s12 addBlogForm">
+                    <h5 className="grey-text text-darken-3 center"><b>POST A BLOG IN URDU</b></h5>
+                    {/* category */}
+                    <div className="input-field">
+                        {/* <label htmlFor="category" className="black-text"></label> */}
+                        <select className="browser-default" id="category" defaultValue={this.state.category} onChange={this.handleChange}>
+                            <option value="" disabled selected>قسم</option>
+                                {
+                                    this.state.categories.map((item)=>
+                                   
+                                        <option value={item.categoryNameUrdu}>{item.categoryNameUrdu}</option>
+                                    )
+                                }
+                        </select>                           
+                    </div>
+
+                    {/* product */}
+                    <div className="input-field">
+                        {/* <label htmlFor="category" className="black-text"></label> */}
+                        <select className="browser-default" id="product" defaultValue={this.state.product} onChange={this.handleChange}>
+                            <option value="" disabled selected>پروڈکٹ</option>
+                            {this.state.productList.map((product,index) =>
+                                 <option value={product}>{product}</option>
+                            )}
+                            
+                           
+                            {/* <option value="corriander">Corriander</option>
+                            <option value="turmeric">Turmeric</option> */}
+                        </select>                           
+                    </div>
+
+                    {/* Title */}
+                    <div className="input-field">
+                        <label htmlFor="blogTitle" className="black-text">Title : </label>
+                        <input type="text" id ="blogTitle" onChange={this.handleChange}/>
+                    </div>
+
+                    {/* Blog Content in Urdu */}
+                    <label htmlFor="blogContentUrdu" className="black-text">Blog Content In Urdu: </label>
+                    <div className="input-field">
+                        <textarea id ="blogContentUrdu" onChange={this.handleChange}/>
+                    </div>
+
+                    {/* Image upload*/}
+                    <div className="input-field">
+                        <span><label htmlFor="blogImage" className="black-text bold">IMAGE: </label></span>
+                        <input type="file" accept="image/*" id ="blogImage" onChange={this.handleChange}/>
+                    </div>
+
+                    {/* date */}
+                    <label htmlFor="date" className="black-text">Date : </label>
+                    <div className="input-field">
+                        <input type="date" id ="date" defaultValue={this.state.date} disabled/>
+                    </div>
+
+                    {/* post button */}
+                    <div className="input-field">
+                        <button className="btn teal accent-4 z-depth-0 center">POST</button>
+                    </div>
+
+                </form>}
+
                 </div>
             </div>
         )}
