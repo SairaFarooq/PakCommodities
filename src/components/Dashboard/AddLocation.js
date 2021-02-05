@@ -1,7 +1,7 @@
 import {Component} from 'react';
 import Sidebar from '../Layout/Sidebar/Sidebar';
 import './Dashboard.css';
-import {addLocation} from '../../services/location.service';
+import {addLocation, getAllLocations} from '../../services/location.service';
 
 class AddLocation extends Component{
 
@@ -9,26 +9,56 @@ class AddLocation extends Component{
 
         locationType : '',
         locationName :'',
-        locationNameUrdu : ''        
+        locationNameUrdu : '' ,
+        allLocations :[]       
 
     }
 
+    componentDidMount =()=>{
+        this.getAllLocations();
+    }
 
     handleChange =(e)=>{
-        console.log(e.target.value);
+       // console.log(e.target.value);
         this.setState({
             [e.target.id] : e.target.value
         });
     }
 
-   /* Add item (API call) */
-   addLocationItem = async (e) =>{
+     /* Fetch All locations from dB */
+    getAllLocations = async() =>{
+
+        const requestOptions = {
+                method: 'GET',
+                headers: { 'Content-Type': 'application/json' },
+            };
+        const response = await getAllLocations(requestOptions);
+        const res = await response.json();
+        console.log("Response ", res);
+        
+       // if(res.status === 'success') {
+            var locations = [];
+            for(let item of res){
+                    locations.push(item)
+                }
+
+                this.setState({ 
+                    allLocations: locations, 
+                     
+                 });
+           // }
+    
+            
+    }
+
+   /* Add locationto dB */
+    addLocationItem = async (e) =>{
     e.preventDefault();
 
     var addThisLocation = {
         locationNameEng : this.state.locationName,
         locationNameUrdu : this.state.locationNameUrdu,
-        locationType : this.state.locationType
+        type : this.state.locationType
     }
 
     //saving data in mongo
@@ -44,7 +74,8 @@ class AddLocation extends Component{
 
     
     
-}
+    }
+
     render(){
         return(
            
@@ -52,18 +83,46 @@ class AddLocation extends Component{
                 <div className="sidebar col l2">
                     <Sidebar />
                 </div>
-   
-                <div className="col l10">
-                    <form onSubmit={this.addLocationItem} className="grey lighten-1 col l4 offset-l4 s12 addLocationForm">
+
+                 {/* list of all locations */}
+                 <div className="col l4">
+                <table>
+                                <thead>
+                                <tr>
+                                    <th>LOCATION TYPE</th>
+                                    <th>LOCATION</th>
+                                    <th>URDU</th>
+                                    <th>ACTIONS</th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                    { this.state.allLocations.map((item) =>
+                                        <tr key={item._id}>
+                                            <td>{item.type}</td>
+                                            <td>{item.locationNameEng}</td>
+                                            <td>{item.locationNameUrdu}</td>
+                                            <td><i class="material-icons"><a className="edit" href="#" onClick = {() => this.openDialog('edit', item._id)}>create</a></i>
+                                                <i class="material-icons"><a className="delete" href="#" onClick = {() => this.deleteCategory(item._id)}>delete</a></i>
+                                            </td>
+                                        </tr>                                
+                                    )}                                
+                                </tbody>
+                            </table>
+                </div>
+
+                {/* form to add Location */}
+                <div className="col l6">
+                    <form onSubmit={this.addLocationItem} className="grey lighten-1 col l8 offset-l1 s12 addLocationForm">
                         <h5 className="grey-text text-darken-3 center"><b>ADD LOCATION</b></h5>
 
                          {/* Select Location */}
                         <div className="input-field">
                             {/* <label htmlFor="category" className="black-text"></label> */}
-                            <select className="browser-default" defaultValue={this.state.locationType} onChange={this.handleChange}>
+                            <select className="browser-default" defaultValue={this.state.locationType} id="locationType" onChange={this.handleChange}>
                                 <option value="" disabled selected>Location Type</option>
-                                <option value="local">Local</option>
-                                <option value="international">International</option>
+                                <option value="Local">Local</option>
+                                <option value="International">International</option>
                             </select>                           
                         </div>
 
