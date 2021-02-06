@@ -8,11 +8,10 @@ class SignUp extends Component{
 
         username :'',
         email :'',
-        firstName :'',
-        lastName : '',
+        fullName :'',
         phone :'',
         password :'',
-        confirmPassword :''
+        subscriptionPlan :''
 
     }
 
@@ -49,13 +48,8 @@ class SignUp extends Component{
                     </div>
 
                     <div className="input-field">
-                        <label htmlFor="firstName" className="black-text">FirstName : </label>
-                        <input type="text" id ="firstName" onChange={this.handleChange}/>
-                    </div>
-
-                    <div className="input-field">
-                        <label htmlFor="lastName" className="black-text">LastName : </label>
-                        <input type="text" id ="lastName" onChange={this.handleChange}/>
+                        <label htmlFor="fullName" className="black-text">FullName : </label>
+                        <input type="text" id ="fullName" onChange={this.handleChange}/>
                     </div>
 
                     <div className="input-field">
@@ -69,8 +63,20 @@ class SignUp extends Component{
                     </div>
 
                     <div className="input-field">
-                        <label htmlFor="confirmPassword" className="black-text">Confirm Password : </label>
-                        <input type="password" id ="confirmPassword" onChange={this.handleChange}/>
+                        <select className="browser-default" defaultValue={this.state.subscriptionPlan} id ="subscriptionPlan" onChange={this.handleChange}>
+                                <option value="" disabled selected>Subscription Plan</option>
+                                {/* {
+                                    this.state.plans.map((item)=>
+                                   
+                                        <option value={item.categoryNameEng}>{item.categoryNameEng}  ||  {item.categoryNameUrdu}</option>
+                                    )
+                                } */}
+                                <option value="one">1 Month</option>
+                                <option value="three">3 Months</option>
+                                <option value="six">6 Months</option>
+                                <option value="tweleve">12 Months</option>
+                                
+                            </select> 
                     </div>
 
                     <div className="input-field">

@@ -3,13 +3,14 @@ import './Dashboard.css';
 import {Link} from 'react-router-dom';
 import Sidebar from '../Layout/Sidebar/Sidebar';
 import AddRate from './AddRate';
+import {getAllRates} from '../../services/rates.service';
 
 
 class Dashboard extends Component{
     
     state={
 
-        loadTableFor : '',
+        loadTableFor : 'import',
         tableData : [],
         openEditDialog: false,
         openDeleteDialog: false,
@@ -35,27 +36,40 @@ class Dashboard extends Component{
             date: dateString
         })
         ///* API call to fetch table data : by default for imports */
-        this.setState({
-            tableData : [
-                            {item : 'Pulses', location : 'bahrain', description : 'hello world', date : '2021-01-27', rate : '100', percent: '10' },
-                            {item : 'Pulses', location : 'bahrain', description : 'hello world', date : '2021-01-27', rate : '100', percent: '10' }
-                        ]
-        })
+        // this.setState({
+        //     tableData : [
+        //                     {item : 'Pulses', location : 'bahrain', description : 'hello world', date : '2021-01-27', rate : '100', percent: '10' },
+        //                     {item : 'Pulses', location : 'bahrain', description : 'hello world', date : '2021-01-27', rate : '100', percent: '10' }
+        //                 ]
+        // })
+        this.showTable('import');
 
     } 
 
-    showTable = (item) =>{
+    showTable = async (item) =>{
       
         console.log("Table of this anchor needs to be rendered : ",item)
         /* API call for table data on click of tabs */
-        this.setState({
-            tableData : [
-                            {item : item, location : 'bahrain', description : 'hello world', date : '2021-01-27', rate : '100', percent: '10' },
-                            {item : item, location : 'bahrain', description : 'hello world', date : '2021-01-27', rate : '100', percent: '10' }
-                        ]
-        })
+        // fetch the rates from dB
 
+        const requestOptions = {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' },
+        };
+        const response = await getAllRates(requestOptions);
+        const res = await response.json();
+        console.log("Response ", res);
+    
+       
+            var rates = [];
+            for(let item of res){
+                 rates.push(item)
+            }
 
+            this.setState({ 
+                    tableData: rates, 
+                        
+            });
 
     }
 
@@ -162,12 +176,12 @@ class Dashboard extends Component{
                                 <tbody>
                                     { this.state.tableData.map((item,index) =>
                                         <tr key={index}>
-                                            <td>{item.item}</td>
-                                            <td>{item.location}</td>
-                                            <td>{item.description}</td>
+                                            <td>{item.product.productNameEng}</td>
+                                            <td>{item.location.locationNameEng}</td>
+                                            <td>{item.descriptionEng}</td>
                                             <td>{item.date}</td>
                                             <td>{item.rate}</td>
-                                            <td>{item.percent}</td>
+                                            <td>{item.percentage}</td>
                                             <td><i class="material-icons"><a className="edit" href="#" onClick = {() => this.openDialog('edit', index)}>create</a></i>
                                                 <i class="material-icons"><a className="delete" href="#" onClick = {() => this.openDialog('delete', index)}>delete</a></i>
                                                 <i class="material-icons"><a className="description" href="#" onClick = {() => this.openDialog('description', index)}>description</a></i>

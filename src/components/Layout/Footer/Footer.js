@@ -25,7 +25,7 @@ const Footer = () =>{
               <div className="col l6 s12">
                 <h1></h1>
                 <ul className="col l4">
-                  <li><a className="footer-subLinks" href="#!">TERMS OF SERVICES</a></li>
+                  <li><a className="footer-subLinks" href="/termsOfService">TERMS OF SERVICES</a></li>
                   <li><a className="footer-subLinks" href="#!">RESEARCH</a></li>
                 </ul>
 

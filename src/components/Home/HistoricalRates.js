@@ -1,5 +1,7 @@
 import { Component } from "react";
 import {Line} from 'react-chartjs-2';
+import {getAllProducts} from '../../services/product.service';
+import {getAllLocations} from '../../services/location.service';
 
 // const state = {
 //     labels: ['January', 'February', 'March','April', 'May','June', 'July', 'August','September', 'October','November','December'],
@@ -22,16 +24,18 @@ class HistoricalRates extends Component{
 
     state={
 
-        category:'',
+        product:'',
         location : '',
         startDate:'',
         endDate:'',
         showGraph : false,
+        products : [],
+        allLocations : [],
         lineGraphData : {
                             labels: ['January', 'February', 'March','April', 'May','June', 'July', 'August','September', 'October','November','December'],
                             datasets: [
                                         {
-                                            label: 'Rainfall',
+                                            label: 'Rates',
                                             fill: false,
                                             lineTension: 0.5,
                                             backgroundColor: 'rgba(75,192,192,1)',
@@ -44,6 +48,63 @@ class HistoricalRates extends Component{
                         }
     }
 
+    componentDidMount =()=>{
+        this.getAllProducts();
+        this.getAllLocations();
+    }
+
+     /* Fetch All products from dB */
+     getAllProducts = async() =>{
+
+        const requestOptions = {
+                method: 'GET',
+                headers: { 'Content-Type': 'application/json' },
+            };
+        const response = await getAllProducts(requestOptions);
+        const res = await response.json();
+        //console.log("Response ", res);
+        
+       // if(res.status === 'success') {
+            var products = [];
+            for(let item of res){
+                    products.push(item)
+                }
+
+                this.setState({ 
+                    products: products, 
+                     
+                 });
+           // }
+    
+            
+    }
+
+     /* Fetch All locations from dB */
+     getAllLocations = async() =>{
+
+        const requestOptions = {
+                method: 'GET',
+                headers: { 'Content-Type': 'application/json' },
+            };
+        const response = await getAllLocations(requestOptions);
+        const res = await response.json();
+        //console.log("Response ", res);
+        
+       // if(res.status === 'success') {
+            var locations = [];
+            for(let item of res){
+                    locations.push(item)
+                }
+
+                this.setState({ 
+                    allLocations: locations, 
+                     
+                 });
+           // }
+    
+            
+    }
+
     handleChange =(e)=>{
         this.setState({
             [e.target.id] : e.target.value
@@ -53,6 +114,10 @@ class HistoricalRates extends Component{
     handleSubmit = (e) =>{
 
         e.preventDefault();
+        console.log('Product selected : ', this.state.product);
+        console.log('Location : ', this.state.location);
+        console.log('Start Date : ',this.state.startDate);
+        console.log('End Date : ', this.state.endDate);
             this.setState({
                 showGraph : true
             })
@@ -70,46 +135,55 @@ class HistoricalRates extends Component{
 
     render() {
     return (
-      <div className="container">
+    
+    <div className="row">
+      <div className="col l8 offset-l2 s12">
 
-                <form onSubmit = {this.handleSubmit} className="white col l4 offset-l4">
-                    <h5 className="grey-text text-darken-3">Search </h5>
-                    {/* category */}
+                <form onSubmit = {this.handleSubmit} className="white">
+                    <h5 className="grey-text text-darken-3 center">Search </h5>
+                    {/* product */}
                     <div class-name="input-field">
-                            <select className="browser-default" id="category" defaultValue={this.state.category} onChange={this.handleChange}>
-                                <option value="" disabled selected>Category</option>
-                                <option value="pulses">Pulses</option>
-                                <option value="sugar">Sugar</option>
-                                <option value="grains">Grains</option>
-                                <option value="fodderSeeds">Fodder Seeds</option>
-                                <option value="oilSeeds">Oil Seeds</option>
-                                <option value="guar">Guar</option>
-                                <option value="spices">Spices</option>
+                            <select className="browser-default" id="product" defaultValue={this.state.product} onChange={this.handleChange}>
+                                <option value="" disabled selected>Product</option>
+                                {
+                                    this.state.products.map((item)=>
+                                   
+                                        <option value={item.productNameEng}>{item.productNameEng}  ||  {item.productNameUrdu}</option>
+                                    )
+                                }
                             </select> 
                     </div>
 
+                    <br />
                     {/* location */}
                     <div class-name="input-field">
                             <select className="browser-default" id="location" defaultValue={this.state.locationType} onChange={this.handleChange}>
                                 <option value="" disabled selected>Location Type</option>
-                                <option value="local">Local</option>
-                                <option value="international">International</option>
+                                {
+                                    this.state.allLocations.map((item)=>
+                                   
+                                        <option value={item.locationNameEng}>{item.locationNameEng}  || {item.locationNameUrdu} </option>
+                                    )
+                                }
                             </select>    
                     </div>
 
+                    <br />
                     {/* Start Date */}
+                    <label htmlFor="startDate">From : </label>
                     <div className="input-field">   
-                            <input type="date" id ="startDate"/>
+                            <input type="date" id ="startDate" onChange={this.handleChange}/>
                     </div>
 
                     {/* End Date */}
+                    <label htmlFor="endDate">To : </label>
                     <div className="input-field">
-                            <input type="date" id ="endDate"/>
+                            <input type="date" id ="endDate" onChange={this.handleChange}/>
                     </div>
 
                     {/* search button */}
                     <div className="input-field">
-                        <button className="btn pink lighten-1 z-depth-0">SEARCH</button>
+                        <button className="btn teal accent-4 z-depth-0 center">SEARCH</button>
                     </div>
                 </form>
                
@@ -130,6 +204,7 @@ class HistoricalRates extends Component{
                          }}
         /> : <div></div>}
       </div>
+    </div>
     );
   }
 }
