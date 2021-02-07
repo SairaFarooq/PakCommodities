@@ -10,7 +10,7 @@ class Dashboard extends Component{
     
     state={
 
-        loadTableFor : 'import',
+        //loadTableFor : 'import',
         tableData : [],
         openEditDialog: false,
         openDeleteDialog: false,
@@ -46,6 +46,7 @@ class Dashboard extends Component{
 
     } 
 
+    // UPDATE THIS : Instead of all rates fetch the filtered rates, still to be done on backend
     showTable = async (item) =>{
       
         console.log("Table of this anchor needs to be rendered : ",item)

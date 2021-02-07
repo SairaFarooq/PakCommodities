@@ -3,6 +3,7 @@ import pulses from '../../assets/pulses.jpg';
 import spices from '../../assets/spices.jpg';
 import grains from '../../assets/grains.jpg';
 import './Home.css';
+import {getAllRates} from '../../services/rates.service';
 
 class Home extends Component{
     
@@ -15,24 +16,33 @@ class Home extends Component{
     componentDidMount = () =>{
 
         ///* API call to fetch table data : by default for imports */
-        this.setState({
-            tableData : [
-                            {item : 'Pulses', location : 'bahrain', description : 'hello world', date : '2021-01-27', rate : '100', percent: '10' },
-                            {item : 'Pulses', location : 'bahrain', description : 'hello world', date : '2021-01-27', rate : '100', percent: '10' }
-                        ]
-        })
+        this.showTable('import');
     }
-
-    showTable = (item) =>{
+    
+    // UPDATE THIS : Instead of all rates fetch the filtered rates, still to be done on backend
+    showTable = async (item) =>{
       
         console.log("Table of this anchor needs to be rendered : ",item)
         /* API call for table data on click of tabs */
-        this.setState({
-            tableData : [
-                            {item : item, location : 'bahrain', description : 'hello world', date : '2021-01-27', rate : '100', percent: '10' },
-                            {item : item, location : 'bahrain', description : 'hello world', date : '2021-01-27', rate : '100', percent: '10' }
-                        ]
-        })
+        
+        const requestOptions = {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' },
+        };
+        const response = await getAllRates(requestOptions);
+        const res = await response.json();
+        console.log("Response ", res);
+    
+       
+            var rates = [];
+            for(let item of res){
+                 rates.push(item)
+            }
+
+            this.setState({ 
+                    tableData: rates, 
+                        
+            });
 
 
 
@@ -79,12 +89,12 @@ class Home extends Component{
                                 <tbody>
                                 {this.state.tableData.map((item,index) =>
                                         <tr key={index}>
-                                            <td>{item.item}</td>
-                                            <td>{item.location}</td>
-                                            <td>{item.description}</td>
+                                            <td>{item.product.productNameEng}</td>
+                                            <td>{item.location.locationNameEng}</td>
+                                            <td>{item.descriptionEng}</td>
                                             <td>{item.date}</td>
                                             <td>{item.rate}</td>
-                                            <td>{item.percent}</td>
+                                            <td>{item.percentage}</td>
                                         </tr>                                
                                 )}    
                                 </tbody>
