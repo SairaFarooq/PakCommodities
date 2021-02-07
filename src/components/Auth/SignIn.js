@@ -34,12 +34,12 @@ class SignIn extends Component{
 
                     <div className="input-field">
                         <label htmlFor="username" className="black-text">Username : </label>
-                        <input type="text" id ="username" onChange={this.handleChange}/>
+                        <input type="text" id ="username" required onChange={this.handleChange}/>
                     </div>
 
                     <div className="input-field">
                         <label htmlFor="password" className="black-text">Password : </label>
-                        <input type="password" id ="password" onChange={this.handleChange}/>
+                        <input type="password" id ="password" required onChange={this.handleChange}/>
                     </div>
 
                     <div className="input-field">

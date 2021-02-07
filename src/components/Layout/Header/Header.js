@@ -20,9 +20,9 @@ const Header = () =>{
                {/* <Link to="/" className="brand-logo">PAK COMMODITIES <br/> <div class="sub-heading">FASTEST NEWS UPDATES OF COMMODITIES IN PAKISTAN </div></Link> */}
                 
                 <ul className="right">
-                    <li><i class="large material-icons"><a className="lightTheme" href="#" onClick={toggleTheme}>brightness_4</a></i></li>
+                    {/* <li><i class="large material-icons"><a className="lightTheme" href="#" onClick={toggleTheme}>brightness_4</a></i></li> */}
                     <li><NavLink to="/blog" className="uppernav">BLOG</NavLink></li>
-                    <li><NavLink to="/news" className="uppernav">NEWSROOM</NavLink></li>
+                    <li><NavLink to="/newsRoom" className="uppernav">NEWSROOM</NavLink></li>
                     <li><NavLink to="/signin" className="uppernav">LOGIN</NavLink></li>
                     <li><NavLink to="/logout" className="uppernav">LOGOUT</NavLink></li>
                     <li><NavLink to="/signup" className="uppernav">SIGNUP</NavLink></li>

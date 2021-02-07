@@ -152,6 +152,7 @@ class Dashboard extends Component{
                             <li className="tab" ><a href="#" onClick = {()=>this.showTable("imports")}>IMPORT</a></li>
                             <li className="tab" ><a href="#" onClick = {()=>this.showTable("pulses")}>PULSES</a></li>
                             <li className="tab" ><a href="#" onClick = {()=>this.showTable("grains")}>GRAINS</a></li>
+                            <li className="tab" ><a href="#" onClick = {()=>this.showTable("sugar")}>SUGAR</a></li>
                             <li className="tab" ><a href="#" onClick = {()=>this.showTable("fodderseeds")}>FODDER SEEDS</a></li>
                             <li className="tab" ><a href="#" onClick = {()=>this.showTable("oilseeds")}>OIL SEEDS</a></li>
                             <li className="tab" ><a href="#" onClick = {()=>this.showTable("spices")}>SPICES</a></li>

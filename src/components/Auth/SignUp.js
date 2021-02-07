@@ -22,6 +22,7 @@ class SignUp extends Component{
     }
 
     handleSignUp = (e) =>{
+        e.preventDefault();
         {/* submit the data to API */}
         console.log("FROM SUBMIT");
     }
@@ -39,32 +40,32 @@ class SignUp extends Component{
 
                     <div className="input-field">
                         <label htmlFor="username" className="black-text" >Username : </label>
-                        <input type="text" id ="username" onChange={this.handleChange}/>
+                        <input type="text" id ="username" required onChange={this.handleChange}/>
                     </div>
 
                     <div className="input-field">
                         <label htmlFor="email" className="black-text">Email : </label>
-                        <input type="email" id ="email" onChange={this.handleChange}/>
+                        <input type="email" id ="email" required  onChange={this.handleChange}/>
                     </div>
 
                     <div className="input-field">
                         <label htmlFor="fullName" className="black-text">FullName : </label>
-                        <input type="text" id ="fullName" onChange={this.handleChange}/>
+                        <input type="text" id ="fullName" required  onChange={this.handleChange}/>
                     </div>
 
                     <div className="input-field">
                         <label htmlFor="phone" className="black-text">Phone : </label>
-                        <input type="text" id ="phone" onChange={this.handleChange}/>
+                        <input type="text" id ="phone" required  onChange={this.handleChange}/>
                     </div>
 
                     <div className="input-field">
                         <label htmlFor="password" className="black-text">Password : </label>
-                        <input type="password" id ="password" onChange={this.handleChange}/>
+                        <input type="password" id ="password"  required onChange={this.handleChange}/>
                     </div>
 
                     <div className="input-field">
-                        <select className="browser-default" defaultValue={this.state.subscriptionPlan} id ="subscriptionPlan" onChange={this.handleChange}>
-                                <option value="" disabled selected>Subscription Plan</option>
+                        <select className="browser-default" defaultValue={this.state.subscriptionPlan} required id="subscriptionPlan" onChange={this.handleChange}>
+                                <option value="" disabled  selected>Subscription Plan</option>
                                 {/* {
                                     this.state.plans.map((item)=>
                                    
@@ -87,7 +88,7 @@ class SignUp extends Component{
                 </form>
 
 
-                {/* Recent Posts */}
+                {/* Recent Posts and recent comments */}
                 <RecentPosts />
                 <RecentPosts />
                 </div>

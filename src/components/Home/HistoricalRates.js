@@ -2,35 +2,22 @@ import { Component } from "react";
 import {Line} from 'react-chartjs-2';
 import {getAllProducts} from '../../services/product.service';
 import {getAllLocations} from '../../services/location.service';
-
-// const state = {
-//     labels: ['January', 'February', 'March','April', 'May','June', 'July', 'August','September', 'October','November','December'],
-//     datasets: [
-//       {
-//         label: 'Rainfall',
-//         fill: false,
-//         lineTension: 0.5,
-//         backgroundColor: 'rgba(75,192,192,1)',
-//         borderColor: 'rgba(0,0,0,1)',
-//         borderWidth: 1,
-//         data: [65, 59, 80, 81, 56, 65, 59, 80, 81, 56, 1, 200]
-//       }
-//     ]
-//   }
-
+import {getOldRates} from '../../services/rates.service';
 
 
 class HistoricalRates extends Component{
 
     state={
 
-        product:'',
-        location : '',
+        productId:'',
+        locationId: '',
         startDate:'',
         endDate:'',
         showGraph : false,
         products : [],
         allLocations : [],
+
+        // Update this state with API
         lineGraphData : {
                             labels: ['January', 'February', 'March','April', 'May','June', 'July', 'August','September', 'October','November','December'],
                             datasets: [
@@ -111,26 +98,43 @@ class HistoricalRates extends Component{
         })
     }
 
-    handleSubmit = (e) =>{
+    // Get the result of the set params from API
+    handleSubmit = async (e) =>{
 
         e.preventDefault();
-        console.log('Product selected : ', this.state.product);
-        console.log('Location : ', this.state.location);
-        console.log('Start Date : ',this.state.startDate);
-        console.log('End Date : ', this.state.endDate);
-            this.setState({
-                showGraph : true
-            })
-        
+        // console.log('Product selected : ', this.state.productId);
+        // console.log('Location : ', this.state.locationId);
+        // console.log('Start Date : ',this.state.startDate);
+        // console.log('End Date : ', this.state.endDate);
+        var getRates = {
+            productId : this.state.productId,
+            locationId : this.state.locationId,
+            startDate : this.state.startDate,
+            endDate : this.state.endDate
+        } 
 
         /* call an API and iterate over the documents, number of documents.dates == labels and documents.rates==data */
-        if(this.state.category === "pulses"){
-            console.log("PULSES was selected")
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json',
+                        'Accept': 'application/json' },
+            body: JSON.stringify(getRates)
+        };
+        const response = await getOldRates(requestOptions);
+        const res = await response.json();
+        console.log("response after addCategory", res);
 
-        }else if(this.state.category === "grains"){
-            console.log("GRAINS was selected")
-        }
+        var graphLabels = [];
+        var graphData =[];
+            for(let item of res){
+                graphLabels.push(item.date);
+                graphData.push(item.rate);
+            }
 
+            this.state.showGraph = true;
+            this.state.lineGraphData.labels = graphLabels;
+            this.state.lineGraphData.datasets[0].data = graphData;
+            this.forceUpdate();      
     }
 
     render() {
@@ -143,12 +147,12 @@ class HistoricalRates extends Component{
                     <h5 className="grey-text text-darken-3 center">Search </h5>
                     {/* product */}
                     <div class-name="input-field">
-                            <select className="browser-default" id="product" defaultValue={this.state.product} onChange={this.handleChange}>
+                            <select className="browser-default" id="product" defaultValue={this.state.product} required onChange={this.handleChange}>
                                 <option value="" disabled selected>Product</option>
                                 {
                                     this.state.products.map((item)=>
                                    
-                                        <option value={item.productNameEng}>{item.productNameEng}  ||  {item.productNameUrdu}</option>
+                                        <option value={item._id}>{item.productNameEng}  ||  {item.productNameUrdu}</option>
                                     )
                                 }
                             </select> 
@@ -157,12 +161,12 @@ class HistoricalRates extends Component{
                     <br />
                     {/* location */}
                     <div class-name="input-field">
-                            <select className="browser-default" id="location" defaultValue={this.state.locationType} onChange={this.handleChange}>
+                            <select className="browser-default" id="location" required defaultValue={this.state.locationType} onChange={this.handleChange}>
                                 <option value="" disabled selected>Location Type</option>
                                 {
                                     this.state.allLocations.map((item)=>
                                    
-                                        <option value={item.locationNameEng}>{item.locationNameEng}  || {item.locationNameUrdu} </option>
+                                        <option value={item._id}>{item.locationNameEng}  || {item.locationNameUrdu} </option>
                                     )
                                 }
                             </select>    
@@ -172,13 +176,13 @@ class HistoricalRates extends Component{
                     {/* Start Date */}
                     <label htmlFor="startDate">From : </label>
                     <div className="input-field">   
-                            <input type="date" id ="startDate" onChange={this.handleChange}/>
+                            <input type="date" id ="startDate" required onChange={this.handleChange}/>
                     </div>
 
                     {/* End Date */}
                     <label htmlFor="endDate">To : </label>
                     <div className="input-field">
-                            <input type="date" id ="endDate" onChange={this.handleChange}/>
+                            <input type="date" id ="endDate" required onChange={this.handleChange}/>
                     </div>
 
                     {/* search button */}

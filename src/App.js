@@ -16,6 +16,8 @@ import AddBlog from './components/Dashboard/AddBlog';
 import AddCategory from './components/Dashboard/AddCategory';
 import ThemeContextProvider from './context/ThemeContext';
 import { TermsOfService } from './components/Others/TermsOfService';
+import { NewsRoom } from './components/Others/NewsRoom';
+import Users from './components/Dashboard/Users';
 
 function App() {
   return (
@@ -37,10 +39,12 @@ function App() {
             <Route path ="/addLocation" component={AddLocation} />
             <Route path ="/addRate" component={AddRate} />
             <Route path ="/addBlog" component={AddBlog} />
+            <Route path ="/users" component={Users} />
 
             {/* All users */}
             <Route path ="/historicalRates" component={HistoricalRates} />
             <Route path ="/termsOfService" component={TermsOfService} />
+            <Route path ="/newsRoom" component={NewsRoom} />
             
           
 
