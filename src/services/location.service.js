@@ -8,3 +8,7 @@ export function addLocation(data) {
     console.log("Data::::", data)
     return fetch( url + 'location/addLocation', data);
 }
+
+export function deleteLocation(data,id) {
+    return fetch( url + 'location/deleteLocation/'+id,data);
+}

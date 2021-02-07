@@ -2,7 +2,7 @@ import {Component} from 'react';
 import Sidebar from '../Layout/Sidebar/Sidebar';
 import './Dashboard.css';
 import {getAllCategories}from '../../services/category.service';
-import {getAllProducts, addProduct}from '../../services/product.service';
+import {getAllProducts, addProduct,deleteProduct}from '../../services/product.service';
 
 class AddProduct extends Component{ 
     state={
@@ -118,6 +118,17 @@ class AddProduct extends Component{
         
     }
 
+    /* Delete product from dB */
+    deleteProduct = async(id)=>{
+        
+        const requestOptions = {
+           method: 'DELETE'       
+       };
+       const response = await deleteProduct(requestOptions,id);
+       const data = await response.json();
+   }
+
+
     render(){
         return(
            
@@ -144,7 +155,7 @@ class AddProduct extends Component{
                                             <td>{item.productNameEng}</td>
                                             <td>{item.productNameUrdu}</td>
                                             <td><i class="material-icons"><a className="edit" href="#" onClick = {() => this.openDialog('edit', item._id)}>create</a></i>
-                                                <i class="material-icons"><a className="delete" href="#" onClick = {() => this.deleteproduct(item._id)}>delete</a></i>
+                                                <i class="material-icons"><a className="delete" href="#" onClick = {() => this.deleteProduct(item._id)}>delete</a></i>
                                             </td>
                                         </tr>                                
                                     )}                                

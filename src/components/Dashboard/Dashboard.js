@@ -204,7 +204,7 @@ class Dashboard extends Component{
                             {/* Select the category of product */}
                             <div className="input-field">
                                 {/* <label htmlFor="category" className="black-text"></label> */}
-                                <select className="browser-default" defaultValue={this.state.selectedItem.item} onChange={this.handleChange}>
+                                <select className="browser-default" defaultValue={this.state.selectedItem.product.productNameEng} onChange={this.handleChange}>
                                     <option value="pulses">Pulses</option>
                                     <option value="kabuliChickPeas">kabuli Chick Peas</option>
                                 </select>                           
@@ -213,7 +213,7 @@ class Dashboard extends Component{
                             {/* Select Location */}
                             <div className="input-field">
                                 {/* <label htmlFor="category" className="black-text"></label> */}
-                                <select className="browser-default" defaultValue={this.state.selectedItem.location} onChange={this.handleChange}>
+                                <select className="browser-default" defaultValue={this.state.selectedItem.location.locationNameEng} onChange={this.handleChange}>
                                     <option value="pakistan">Pakistan</option>
                                     <option value="bahrain">Bahrain</option>
                                 </select>                           
@@ -228,7 +228,7 @@ class Dashboard extends Component{
                             {/* Add description*/}
                             <label htmlFor="description" className="black-text">Description: </label>
                             <div className="input-field">
-                                <input type="text" id ="description" value={this.state.selectedItem.description} onChange={this.handleChange}/>
+                                <input type="text" id ="description" value={this.state.selectedItem.descriptionEng} onChange={this.handleChange}/>
                             </div>
 
                             {/* Date */}

@@ -1,7 +1,7 @@
 import {Component} from 'react';
 import Sidebar from '../Layout/Sidebar/Sidebar';
 import './Dashboard.css';
-import {addLocation, getAllLocations} from '../../services/location.service';
+import {addLocation, getAllLocations, deleteLocation} from '../../services/location.service';
 
 class AddLocation extends Component{
 
@@ -75,6 +75,16 @@ class AddLocation extends Component{
     
     
     }
+    
+    /* Delete location from dB */
+    deleteLocation = async(id)=>{
+        
+         const requestOptions = {
+            method: 'DELETE'       
+        };
+        const response = await deleteLocation(requestOptions,id);
+        const data = await response.json();
+    }
 
     render(){
         return(
@@ -103,7 +113,7 @@ class AddLocation extends Component{
                                             <td>{item.locationNameEng}</td>
                                             <td>{item.locationNameUrdu}</td>
                                             <td><i class="material-icons"><a className="edit" href="#" onClick = {() => this.openDialog('edit', item._id)}>create</a></i>
-                                                <i class="material-icons"><a className="delete" href="#" onClick = {() => this.deleteCategory(item._id)}>delete</a></i>
+                                                <i class="material-icons"><a className="delete" href="#" onClick = {() => this.deleteLocation(item._id)}>delete</a></i>
                                             </td>
                                         </tr>                                
                                     )}                                

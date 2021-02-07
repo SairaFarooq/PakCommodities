@@ -9,7 +9,7 @@ export function addProduct(data) {
     console.log("From product.service == ", data)
     return fetch( url + 'product/addproduct', data);
 }
+
 export function deleteProduct(data,id) {
-    console.log("Data retrieved is ", data, id);
     return fetch( url + 'product/deleteproduct/'+id,data);
 }
