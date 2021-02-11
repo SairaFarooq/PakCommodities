@@ -68,8 +68,9 @@ class Home extends Component{
                             <li className="tab col l1" ><a href="#" onClick = {()=>this.showTable("grains")}>GRAINS</a></li>
                             <li className="tab col l2" ><a href="#" onClick = {()=>this.showTable("fodderseeds")}>FODDER SEEDS</a></li>
                             <li className="tab col l2" ><a href="#" onClick = {()=>this.showTable("oilseeds")}>OIL SEEDS</a></li>
-                            <li className="tab col l2" ><a href="#" onClick = {()=>this.showTable("spices")}>SPICES</a></li>
-                            <li className="tab col l2" ><a href="#" onClick = {()=>this.showTable("guar")}>GUAR</a></li>
+                            <li className="tab col l1" ><a href="#" onClick = {()=>this.showTable("spices")}>SPICES</a></li>
+                            <li className="tab col l1" ><a href="#" onClick = {()=>this.showTable("sugar")}>SUGAR</a></li>
+                            <li className="tab col l1" ><a href="#" onClick = {()=>this.showTable("guar")}>GUAR</a></li>
                             
                         </ul>
 

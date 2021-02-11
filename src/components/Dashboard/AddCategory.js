@@ -23,7 +23,7 @@ class AddCategory extends Component{
         });
     }
 
-    /* Fetch All records from dB */
+    /* Fetch All categories */
     getAllCategories = async() =>{
 
         const requestOptions = {
@@ -49,7 +49,7 @@ class AddCategory extends Component{
             
     }
 
-    /* Add category to dB */
+    /* Add category */
     addCategoryItem = async(e)=>{
         e.preventDefault();
 
@@ -74,7 +74,7 @@ class AddCategory extends Component{
         
     }
 
-    /* Delete category from dB */
+    /* Delete category */
     deleteCategory = async(id)=>{
         console.log("catgeiory items id :: ",id)
          

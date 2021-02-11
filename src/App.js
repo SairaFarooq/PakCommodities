@@ -14,10 +14,12 @@ import AddLocation from './components/Dashboard/AddLocation';
 import AddRate from './components/Dashboard/AddRate';
 import AddBlog from './components/Dashboard/AddBlog';
 import AddCategory from './components/Dashboard/AddCategory';
+import Notifications from './components/Dashboard/Notifications';
 import ThemeContextProvider from './context/ThemeContext';
 import { TermsOfService } from './components/Others/TermsOfService';
 import { NewsRoom } from './components/Others/NewsRoom';
 import Users from './components/Dashboard/Users';
+import AddPlan from './components/Dashboard/AddPlan';
 
 function App() {
   return (
@@ -32,8 +34,11 @@ function App() {
             <Route exact path ="/" component={Home}/>
             <Route path ="/signin" component={SignIn}/>
             <Route path ="/signup" component={SignUp}/>
+
             {/* Admin dashboard */}
             <Route path ="/dashboard" component={Dashboard} />
+            <Route path ="/notifications" component={Notifications} />
+            <Route path ="/addPlan" component={AddPlan} />
             <Route path ="/addCategory" component={AddCategory} />
             <Route path ="/addProduct" component={AddProduct} />
             <Route path ="/addLocation" component={AddLocation} />

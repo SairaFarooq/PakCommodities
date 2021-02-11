@@ -1,5 +1,6 @@
 import {Component} from 'react';
 import './SignIn.css';
+import {loginUser} from '../../services/user.service';
 
 class SignIn extends Component{
 
@@ -15,10 +16,34 @@ class SignIn extends Component{
         });
     }
 
-    handleSignIn = (e) =>{
+    handleSignIn = async (e) =>{
         {/* submit the data to API */}
         e.preventDefault();
-        console.log("FROM SUBMIT");
+
+        var user = {
+            username : this.state.username,
+            password : this.state.password,
+            phoneNumber : 123,
+            email :' this.state.email',
+            subscribedPlan: {plan : 'this.state.subscriptionPlan'},
+            transactionId : 'this.state.transactionId',
+            startDate : new Date(),
+            endDate : new Date(),
+            status : 'inactive'
+        }
+        console.log("FROM SUBMIT", loginUser);
+
+        //saving data in mongo
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json',
+                        'Accept': 'application/json' },
+            body: JSON.stringify(user)
+        };
+        const response = await loginUser(requestOptions);
+        const res = await response.json();
+        console.log("response after login", res);
+
     }
 
     render(){
