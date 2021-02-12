@@ -99,7 +99,7 @@ class AddPlan extends Component{
                 </div>
 
                 {/* list of all Plans */}
-                <div className="col l4">
+                <div className="col l5">
                 <table>
                                 <thead>
                                 <tr>
@@ -107,7 +107,7 @@ class AddPlan extends Component{
                                     <th>DURATION</th>
                                     <th>PRICE(PKR)</th>
                                     <th>PRICE(USD)</th>
-                                    <th>DESCRIPTION</th>
+                                    {/* <th>DESCRIPTION</th> */}
                                     <th>ACTIONS</th>
                                 </tr>
                                 </thead>
@@ -119,9 +119,10 @@ class AddPlan extends Component{
                                             <td>{item.planDuration}</td>
                                             <td>{item.planPricePKR}</td>
                                             <td>{item.planPriceUSD}</td>
-                                            <td>{item.planDescription}</td>
+                                            {/* <td>{item.planDescription}</td> */}
                                             <td><i class="material-icons"><a className="edit" href="#" onClick = {() => this.openDialog('edit', item._id)}>create</a></i>
-                                                <i class="material-icons"><a className="delete" href="#" onClick = {() => this.deletePlan(item._id)}>delete</a></i>
+                                                <i class="material-icons"><a className="description" href="#" onClick = {() => this.openDialog('description', item._id)}>description</a></i>
+                                                <i class="material-icons"><a className="delete" href="#" onClick = {() => this.deletePlan(item._id)}>delete</a></i>          
                                             </td>
                                         </tr>                                
                                     )}                                
@@ -130,8 +131,8 @@ class AddPlan extends Component{
                 </div>
    
                  {/* form to add new category */}
-                <div className="col l6 addCategory">
-                    <form onSubmit={this.addPlanItem} className="grey lighten-1 col l8 offset-l1 s12 addCategoryForm">
+                <div className="col l5 addCategory">
+                    <form onSubmit={this.addPlanItem} className="grey lighten-1 col l9 offset-l1 s12 addCategoryForm">
                         <h5 className="grey-text text-darken-3 center"><b>ADD A PLAN</b></h5>
 
 

@@ -3,14 +3,15 @@ import './Dashboard.css';
 import {Link} from 'react-router-dom';
 import Sidebar from '../Layout/Sidebar/Sidebar';
 import AddRate from './AddRate';
-import {getAllRates} from '../../services/rates.service';
+import {getAllRates, getCategoryRates} from '../../services/rates.service';
+import {getAllCategories} from '../../services/category.service';
 
 
 class Dashboard extends Component{
     
     state={
 
-        //loadTableFor : 'import',
+        allCategories :[],
         tableData : [],
         openEditDialog: false,
         openDeleteDialog: false,
@@ -42,22 +43,46 @@ class Dashboard extends Component{
         //                     {item : 'Pulses', location : 'bahrain', description : 'hello world', date : '2021-01-27', rate : '100', percent: '10' }
         //                 ]
         // })
-        this.showTable('import');
+        this.getAllCategories();
+        this.showTable('600bfa284a2a7a0960a9d556'); //category : import 
 
     } 
 
-    // UPDATE THIS : Instead of all rates fetch the filtered rates, still to be done on backend
-    showTable = async (item) =>{
-      
-        console.log("Table of this anchor needs to be rendered : ",item)
-        /* API call for table data on click of tabs */
-        // fetch the rates from dB
+    /* Fetch All categories */
+    getAllCategories = async() =>{
 
+        const requestOptions = {
+                method: 'GET',
+                headers: { 'Content-Type': 'application/json' },
+            };
+        const response = await getAllCategories(requestOptions);
+        const res = await response.json();
+        console.log("Response ", res);
+        
+            var categories = [];
+            for(let item of res){
+                    categories.push(item)
+                }
+
+                this.setState({ 
+                    allCategories: categories, 
+                     
+                 });
+
+    }
+
+
+    // UPDATE THIS : Instead of all rates fetch the filtered rates, still to be done on backend
+    showTable = async (categoryId) =>{
+      
+        console.log("Table of this anchor needs to be rendered : ",categoryId)
+        /* API call for table data on click of tabs */
+        // fetch the rates of the clicked category from dB
         const requestOptions = {
             method: 'GET',
             headers: { 'Content-Type': 'application/json' },
         };
-        const response = await getAllRates(requestOptions);
+        const response = await getCategoryRates(requestOptions, categoryId);
         const res = await response.json();
         console.log("Response ", res);
     
@@ -147,17 +172,22 @@ class Dashboard extends Component{
                     <Sidebar />
                 </div>
    
-                {/* Tabs for viewing table */}
+                <br />
+                {/* category Tabs for viewing table */}
                 <div className="col l10">
                         <ul className="tabs">
-                            <li className="tab" ><a href="#" onClick = {()=>this.showTable("imports")}>IMPORT</a></li>
-                            <li className="tab" ><a href="#" onClick = {()=>this.showTable("pulses")}>PULSES</a></li>
-                            <li className="tab" ><a href="#" onClick = {()=>this.showTable("grains")}>GRAINS</a></li>
-                            <li className="tab" ><a href="#" onClick = {()=>this.showTable("sugar")}>SUGAR</a></li>
-                            <li className="tab" ><a href="#" onClick = {()=>this.showTable("fodderseeds")}>FODDER SEEDS</a></li>
-                            <li className="tab" ><a href="#" onClick = {()=>this.showTable("oilseeds")}>OIL SEEDS</a></li>
-                            <li className="tab" ><a href="#" onClick = {()=>this.showTable("spices")}>SPICES</a></li>
-                            <li className="tab" ><a href="#" onClick = {()=>this.showTable("guar")}>GUAR</a></li>
+                        {this.state.allCategories.map((item) =>
+                                 <li className="tab"><a href="#" onClick = {()=>this.showTable(item._id)}>{item.categoryNameEng}</a></li>                               
+                        )} 
+
+                            {/* <li className="tab"><a href="#" onClick = {()=>this.showTable("imports")}>IMPORT</a></li>
+                            <li className="tab"><a href="#" onClick = {()=>this.showTable("pulses")}>PULSES</a></li>
+                            <li className="tab"><a href="#" onClick = {()=>this.showTable("grains")}>GRAINS</a></li>
+                            <li className="tab"><a href="#" onClick = {()=>this.showTable("sugar")}>SUGAR</a></li>
+                            <li className="tab"><a href="#" onClick = {()=>this.showTable("fodderseeds")}>FODDER SEEDS</a></li>
+                            <li className="tab"><a href="#" onClick = {()=>this.showTable("oilseeds")}>OIL SEEDS</a></li>
+                            <li className="tab"><a href="#" onClick = {()=>this.showTable("spices")}>SPICES</a></li>
+                            <li className="tab"><a href="#" onClick = {()=>this.showTable("guar")}>GUAR</a></li> */}
                             
                         </ul>
 

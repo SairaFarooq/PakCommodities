@@ -4,7 +4,7 @@ import './Navbar.css';
 const Navbar = () =>{
     return(
         <nav className="nav-wrapper teal accent-4">
-            {/* <div className="container"> */}
+            <div className="container">
                 <ul className="navbar">
                     <li className="navbarLinks"><a className='dropdown-button btn teal accent-4 categories' data-beloworigin="true" href='#' data-activates='pulsesDropDown'>PULSES<i className="material-icons right">arrow_drop_down</i></a></li>
                     <li className="navbarLinks"><a className='dropdown-button btn teal accent-4 categories' data-beloworigin="true" href='#' data-activates='grainsDropDown'>GRAINS<i className="material-icons right">arrow_drop_down</i></a></li>
@@ -71,7 +71,7 @@ const Navbar = () =>{
                     <li><a href="#!">Castor Seed</a></li>
                 </ul> 
 
-            {/* </div> */}
+            </div>
         </nav>
     )
 

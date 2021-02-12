@@ -178,6 +178,8 @@ class Users extends Component{
                     <Sidebar />
                 </div>
 
+                <br />
+
                 {/* list of all users */}
                 <div className="col l10">
                         <ul className="tabs">

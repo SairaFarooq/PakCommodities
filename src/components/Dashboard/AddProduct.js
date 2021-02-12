@@ -22,7 +22,7 @@ class AddProduct extends Component{
 
     }
 
-    /* Fetch All categories from dB */
+    /* Fetch All categories */
     getAllCategories = async() =>{
 
         const requestOptions = {
@@ -48,7 +48,7 @@ class AddProduct extends Component{
             
     }
 
-    /* Fetch All Products from dB */
+    /* Fetch All Products */
     getAllProducts = async() =>{
 
         const requestOptions = {
@@ -82,7 +82,7 @@ class AddProduct extends Component{
         });
     }
 
-    /* Add Product to dB */
+    /* Add Product */
     addProduct =async(e)=>{
 
         e.preventDefault();
@@ -118,7 +118,7 @@ class AddProduct extends Component{
         
     }
 
-    /* Delete product from dB */
+    /* Delete product */
     deleteProduct = async(id)=>{
         
         const requestOptions = {

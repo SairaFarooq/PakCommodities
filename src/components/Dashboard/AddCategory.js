@@ -4,6 +4,7 @@ import './Dashboard.css';
 import {addCategory, getAllCategories, deleteCategory}from '../../services/category.service';
 
 class AddCategory extends Component{ 
+    
     state={
 
         categoryName :'',

@@ -131,8 +131,8 @@ class SignUp extends Component{
 
 
                 {/* Recent Posts and recent comments */}
-                <RecentPosts />
-                <RecentPosts />
+                {/* <RecentPosts />
+                <RecentPosts /> */}
                 </div>
 
                

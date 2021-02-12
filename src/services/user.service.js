@@ -1,4 +1,5 @@
-let url = 'http://192.168.100.8:3001/'; //server 
+var config = require('../config.json');
+let url = config.ipUrl; //server 
 
 
 export function getAllUsers(data) {

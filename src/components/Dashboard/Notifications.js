@@ -11,7 +11,8 @@ class Notifications extends Component{
                     <Sidebar />
                 </div>
 
-           
+                <br />
+                
                 <div className="col l10">
                     This is notifications component
                 </div>

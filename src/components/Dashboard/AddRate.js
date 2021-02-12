@@ -2,15 +2,21 @@ import {Component} from 'react';
 import Sidebar from '../Layout/Sidebar/Sidebar';
 import './Dashboard.css';
 
+import {addRate} from '../../services/rates.service';
+
 class AddRate extends Component{ 
     
     state={
 
-        product : '',
-        location :'',
+        product : {},
+        location :{},
+        category : {},
         rate : '',
-        description : '',
-        date : ''        
+        descriptionEng : '',
+        descriptionUrdu : '',
+        date : '' ,
+        percentage : '0',
+        sequence : 0
 
     }
 
@@ -37,7 +43,36 @@ class AddRate extends Component{
     }
 
     /* Add item to API */
-    addRate =()=>{
+    addRate = async(e)=>{
+        e.preventDefault();
+
+        var addThisRate = {
+
+            product : this.state.product,
+            location :this.state.location,
+            category : this.state.category,
+            rate : this.state.rate,
+            descriptionEng : this.state.descriptionEng,
+            descriptionUrdu : this.state.descriptionUrdu,
+            date : this.state.date,
+            percentage : this.state.percentage,
+            sequence : this.state.sequence
+            
+        }
+    
+        //saving data in mongo
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json',
+                        'Accept': 'application/json' },
+            body: JSON.stringify(addThisRate)
+        };
+        const response = await addRate(requestOptions);
+        const res = await response.json();
+        console.log("response after addRate", res)
+
+        // after success set the values to null of the form
+
         
     }
 
@@ -50,7 +85,7 @@ class AddRate extends Component{
                 </div>
    
                 <div className="col l10">
-                    <form onSubmit={this.addRate()} className="grey lighten-1 col l4 offset-l4 s12 addRateForm">
+                    <form onSubmit={this.addRate} className="grey lighten-1 col l4 offset-l4 s12 addRateForm">
                         <h5 className="grey-text text-darken-3 center"><b>ADD Rate</b></h5>
 
                          {/* Select the category of product */}
@@ -79,10 +114,16 @@ class AddRate extends Component{
                             <input type="number" id ="rate" onChange={this.handleChange}/>
                         </div>
 
-                         {/* Add description*/}
+                         {/* Add descriptionEng*/}
                         <div className="input-field">
-                            <label htmlFor="description" className="black-text">Description: </label>
-                            <input type="text" id ="description" onChange={this.handleChange}/>
+                            <label htmlFor="descriptionEng" className="black-text">Description In English: </label>
+                            <input type="text" id ="descriptionEng" onChange={this.handleChange}/>
+                        </div>
+
+                         {/* Add descriptionUrdu*/}
+                        <div className="input-field">
+                            <label htmlFor="descriptionUrdu" className="black-text">Description In Urdu: </label>
+                            <input type="text" id ="descriptionUrdu" onChange={this.handleChange}/>
                         </div>
 
                          {/* Date */}

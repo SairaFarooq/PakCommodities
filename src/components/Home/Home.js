@@ -3,12 +3,13 @@ import pulses from '../../assets/pulses.jpg';
 import spices from '../../assets/spices.jpg';
 import grains from '../../assets/grains.jpg';
 import './Home.css';
-import {getAllRates} from '../../services/rates.service';
+import {getAllRates,getCategoryRates} from '../../services/rates.service';
+import {getAllCategories} from '../../services/category.service';
 
 class Home extends Component{
     
     state={
-        loadTableFor : '',
+        allCategories :[],
         tableData : []
 
     }
@@ -16,20 +17,44 @@ class Home extends Component{
     componentDidMount = () =>{
 
         ///* API call to fetch table data : by default for imports */
-        this.showTable('import');
+        this.getAllCategories();
+        this.showTable('600bfa284a2a7a0960a9d556');
+    }
+
+     /* Fetch All categories */
+     getAllCategories = async() =>{
+
+        const requestOptions = {
+                method: 'GET',
+                headers: { 'Content-Type': 'application/json' },
+            };
+        const response = await getAllCategories(requestOptions);
+        const res = await response.json();
+        console.log("Response ", res);
+        
+            var categories = [];
+            for(let item of res){
+                    categories.push(item)
+                }
+
+                this.setState({ 
+                    allCategories: categories, 
+                     
+                 });
+
     }
     
     // UPDATE THIS : Instead of all rates fetch the filtered rates, still to be done on backend
-    showTable = async (item) =>{
+    showTable = async (categoryId) =>{
       
-        console.log("Table of this anchor needs to be rendered : ",item)
+        console.log("Table of this anchor needs to be rendered : ",categoryId)
         /* API call for table data on click of tabs */
-        
+        // fetch the rates of the clicked category from dB
         const requestOptions = {
             method: 'GET',
             headers: { 'Content-Type': 'application/json' },
         };
-        const response = await getAllRates(requestOptions);
+        const response = await getCategoryRates(requestOptions, categoryId);
         const res = await response.json();
         console.log("Response ", res);
     
@@ -43,8 +68,6 @@ class Home extends Component{
                     tableData: rates, 
                         
             });
-
-
 
     }
 
@@ -64,14 +87,17 @@ class Home extends Component{
                     {/* //Tabss : View table*/}
                     <div className="row">
                         <ul className="tabs">
-                            <li className="tab"><a href="#" onClick = {()=>this.showTable("imports")}>IMPORT</a></li>
+                        {this.state.allCategories.map((item) =>
+                                 <li className="tab"><a href="#" onClick = {()=>this.showTable(item._id)}>{item.categoryNameEng}</a></li>                               
+                        )} 
+                            {/* <li className="tab"><a href="#" onClick = {()=>this.showTable("imports")}>IMPORT</a></li>
                             <li className="tab"><a href="#" onClick = {()=>this.showTable("pulses")}>PULSES</a></li>
                             <li className="tab"><a href="#" onClick = {()=>this.showTable("grains")}>GRAINS</a></li>
                             <li className="tab"><a href="#" onClick = {()=>this.showTable("fodderseeds")}>FODDER SEEDS</a></li>
                             <li className="tab"><a href="#" onClick = {()=>this.showTable("oilseeds")}>OIL SEEDS</a></li>
                             <li className="tab"><a href="#" onClick = {()=>this.showTable("spices")}>SPICES</a></li>
                             <li className="tab"><a href="#" onClick = {()=>this.showTable("sugar")}>SUGAR</a></li>
-                            <li className="tab"><a href="#" onClick = {()=>this.showTable("guar")}>GUAR</a></li>
+                            <li className="tab"><a href="#" onClick = {()=>this.showTable("guar")}>GUAR</a></li> */}
                             
                         </ul>
 

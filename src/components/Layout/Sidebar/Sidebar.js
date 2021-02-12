@@ -15,8 +15,10 @@ class Sidebar extends Component{
                     
                     <li className="sidebarLinks"><a className="sidebarItem" href="/dashboard">HOME</a></li>
                     <li><div className="divider"></div></li>
-                    <li className="sidebarLinks"><a className="sidebarItem" href="/allRates">ALL RATES</a> </li>
+                    <li className="sidebarLinks"><a className="sidebarItem" href="/users">USERS</a> </li>
                     <li><div className="divider"></div></li>
+                    {/* <li className="sidebarLinks"><a className="sidebarItem" href="/allRates">ALL RATES</a> </li>
+                    <li><div className="divider"></div></li> */}
                     <li className="sidebarLinks"><a className="sidebarItem" href="/notifications">NOTIFICATIONS</a> </li>
                     <li><div className="divider"></div></li>
                     <li className="sidebarLinks"><a className="sidebarItem" href="/addPlan">ADD PLAN</a> </li>
@@ -31,8 +33,7 @@ class Sidebar extends Component{
                     <li><div className="divider"></div></li>
                     <li className="sidebarLinks"><a className="sidebarItem" href="/addBlog">ADD BLOG</a> </li>
                     <li><div className="divider"></div></li>
-                    <li className="sidebarLinks"><a className="sidebarItem" href="/users">USERS</a> </li>
-                    <li><div className="divider"></div></li>
+                    
                     
                     
                     
