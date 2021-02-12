@@ -4,17 +4,19 @@ import './Navbar.css';
 const Navbar = () =>{
     return(
         <nav className="nav-wrapper teal accent-4">
-            <div className="container">
-                <ul>
-               
-                    <li><a className='dropdown-button btn teal accent-4 categories' data-beloworigin="true" href='#' data-activates='pulsesDropDown'>PULSES<i className="material-icons right">arrow_drop_down</i></a></li>
-                    <li><a className='dropdown-button btn teal accent-4 categories' data-beloworigin="true" href='#' data-activates='grainsDropDown'>GRAINS<i className="material-icons right">arrow_drop_down</i></a></li>
-                    <li><a className='dropdown-button btn teal accent-4 categories' data-beloworigin="true" href='#' data-activates='fodderSeedsDropDown'>FODDER SEEDS<i className="material-icons right">arrow_drop_down</i></a></li>
-                    <li><a className='dropdown-button btn teal accent-4 categories' data-beloworigin="true" href='#' data-activates='spicesDropDown'>SPICES<i className="material-icons right">arrow_drop_down</i></a></li>
-                    <li><a className='dropdown-button btn teal accent-4 categories' data-beloworigin="true" href='#' data-activates='sugarDropDown'>SUGAR/GUR<i className="material-icons right">arrow_drop_down</i></a></li>
-                    <li><a className='dropdown-button btn teal accent-4 categories' data-beloworigin="true" href='#' data-activates='guarDropDown'>GUAR<i className="material-icons right">arrow_drop_down</i></a></li>
-                    <li><a className='dropdown-button btn teal accent-4 categories' data-beloworigin="true" href='#' data-activates='oilSeedsDropDown'>OIL SEEDS<i className="material-icons right">arrow_drop_down</i></a></li>
-                    <li><a className='btn teal accent-4 categories'  href='/historicalRates'>RATES</a></li>
+            {/* <div className="container"> */}
+                <ul className="navbar">
+                    <li className="navbarLinks"><a className='dropdown-button btn teal accent-4 categories' data-beloworigin="true" href='#' data-activates='pulsesDropDown'>PULSES<i className="material-icons right">arrow_drop_down</i></a></li>
+                    <li className="navbarLinks"><a className='dropdown-button btn teal accent-4 categories' data-beloworigin="true" href='#' data-activates='grainsDropDown'>GRAINS<i className="material-icons right">arrow_drop_down</i></a></li>
+                    <li className="navbarLinks"><a className='dropdown-button btn teal accent-4 categories' data-beloworigin="true" href='#' data-activates='fodderSeedsDropDown'>FODDER SEEDS<i className="material-icons right">arrow_drop_down</i></a></li>
+                    <li className="navbarLinks"><a className='dropdown-button btn teal accent-4 categories' data-beloworigin="true" href='#' data-activates='spicesDropDown'>SPICES<i className="material-icons right">arrow_drop_down</i></a></li>
+                    <li className="navbarLinks"><a className='dropdown-button btn teal accent-4 categories' data-beloworigin="true" href='#' data-activates='sugarDropDown'>SUGAR/GUR<i className="material-icons right">arrow_drop_down</i></a></li>
+                    <li className="navbarLinks"><a className='dropdown-button btn teal accent-4 categories' data-beloworigin="true" href='#' data-activates='guarDropDown'>GUAR<i className="material-icons right">arrow_drop_down</i></a></li>
+                    <li className="navbarLinks"><a className='dropdown-button btn teal accent-4 categories' data-beloworigin="true" href='#' data-activates='oilSeedsDropDown'>OIL SEEDS<i className="material-icons right">arrow_drop_down</i></a></li>
+                    <li className="navbarLinks"><a className='btn teal accent-4 categories'  href='/historicalRates'>HISTORICAL RATES</a></li>
+                    <li className="navbarLinks"><a className='btn teal accent-4 categories'  href='/historates'>RATES</a></li>
+                    <li className="navbarLinks"><a className='btn teal accent-4 categories'  href='/historiates'>RATES</a></li>
+                    <li className="navbarLinks"><a className='btn teal accent-4 categories'  href='/historiates'>RATES</a></li>
 
                 </ul>
 
@@ -69,7 +71,7 @@ const Navbar = () =>{
                     <li><a href="#!">Castor Seed</a></li>
                 </ul> 
 
-            </div>
+            {/* </div> */}
         </nav>
     )
 

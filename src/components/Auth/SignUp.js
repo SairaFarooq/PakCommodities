@@ -12,7 +12,7 @@ class SignUp extends Component{
         phoneNumber :'',
         password :'',
         subscriptionPlan :'',
-        transactionId : 'transId',
+        transactionId : '',
         startDate : '',
         endDate: '',
         status : 'pending'
@@ -60,7 +60,7 @@ class SignUp extends Component{
         console.log("response after addUser", res);
 
 
-        }
+    }
 
     render(){
         return(
@@ -97,6 +97,12 @@ class SignUp extends Component{
                         <input type="password" id ="password"  required onChange={this.handleChange}/>
                     </div>
                     
+                    {/* transcation Id */}
+                    <div className="input-field">
+                        <label htmlFor="transactionId" class="black-text" >Transaction Id : </label>
+                        <input type="text" id ="transactionId" required onChange={this.handleChange}/>
+                    </div>
+
                     {/* Subscription Plan */}
                     <div className="input-field">
                         <select className="browser-default" defaultValue={this.state.subscriptionPlan} required id="subscriptionPlan" onChange={this.handleChange}>

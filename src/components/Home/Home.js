@@ -51,26 +51,27 @@ class Home extends Component{
     render(){
         return(
             <div>
-                <div className="carousel carousel-slider" data-indicators="true" >
+                {/* <div className="carousel carousel-slider" data-indicators="true" >
                     
                     {/* <a className="carousel-item" href="#one!"><img src={spices}/></a>
-                    <a className="carousel-item" href="#one!"><img src={grains}/></a> */}
+                    <a className="carousel-item" href="#one!"><img src={grains}/></a> 
                      <a className="carousel-item" href="#one!"><img src={pulses}/></a> 
                     
-                </div> 
+                </div>  */}
 
                 <div className="container">
+                <div className="row"></div>
                     {/* //Tabss : View table*/}
                     <div className="row">
                         <ul className="tabs">
-                            <li className="tab col l1" ><a href="#" onClick = {()=>this.showTable("imports")}>IMPORT</a></li>
-                            <li className="tab col l1" ><a href="#" onClick = {()=>this.showTable("pulses")}>PULSES</a></li>
-                            <li className="tab col l1" ><a href="#" onClick = {()=>this.showTable("grains")}>GRAINS</a></li>
-                            <li className="tab col l2" ><a href="#" onClick = {()=>this.showTable("fodderseeds")}>FODDER SEEDS</a></li>
-                            <li className="tab col l2" ><a href="#" onClick = {()=>this.showTable("oilseeds")}>OIL SEEDS</a></li>
-                            <li className="tab col l1" ><a href="#" onClick = {()=>this.showTable("spices")}>SPICES</a></li>
-                            <li className="tab col l1" ><a href="#" onClick = {()=>this.showTable("sugar")}>SUGAR</a></li>
-                            <li className="tab col l1" ><a href="#" onClick = {()=>this.showTable("guar")}>GUAR</a></li>
+                            <li className="tab"><a href="#" onClick = {()=>this.showTable("imports")}>IMPORT</a></li>
+                            <li className="tab"><a href="#" onClick = {()=>this.showTable("pulses")}>PULSES</a></li>
+                            <li className="tab"><a href="#" onClick = {()=>this.showTable("grains")}>GRAINS</a></li>
+                            <li className="tab"><a href="#" onClick = {()=>this.showTable("fodderseeds")}>FODDER SEEDS</a></li>
+                            <li className="tab"><a href="#" onClick = {()=>this.showTable("oilseeds")}>OIL SEEDS</a></li>
+                            <li className="tab"><a href="#" onClick = {()=>this.showTable("spices")}>SPICES</a></li>
+                            <li className="tab"><a href="#" onClick = {()=>this.showTable("sugar")}>SUGAR</a></li>
+                            <li className="tab"><a href="#" onClick = {()=>this.showTable("guar")}>GUAR</a></li>
                             
                         </ul>
 

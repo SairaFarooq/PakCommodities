@@ -5,7 +5,15 @@
     font-weight: bold;
     
 }
+.navbar {
+    white-space: nowrap!important;
+    overflow-x: auto !important;
+}
 
+.navbarLinks{
+    display: inline-block !important;
+    float: none !important;
+}
 .dropdown-content li>a{
     color : white !important;
 }
