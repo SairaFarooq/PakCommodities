@@ -74,16 +74,8 @@ class Home extends Component{
     render(){
         return(
             <div>
-                {/* <div className="carousel carousel-slider" data-indicators="true" >
-                    
-                    {/* <a className="carousel-item" href="#one!"><img src={spices}/></a>
-                    <a className="carousel-item" href="#one!"><img src={grains}/></a> 
-                     <a className="carousel-item" href="#one!"><img src={pulses}/></a> 
-                    
-                </div>  */}
-
                 <div className="container">
-                <div className="row"></div>
+                    <div className="row"></div>
                     {/* //Tabss : View table*/}
                     <div className="row">
                         <ul className="tabs">
@@ -220,8 +212,7 @@ class Home extends Component{
 
                 </div>
                
-
-             </div>
+            </div>
             
         )
     }

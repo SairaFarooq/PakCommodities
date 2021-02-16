@@ -1,22 +1,57 @@
-
+import {useState, useEffect} from 'react';
 import './Navbar.css';
+import {getAllCategories} from '../../../services/category.service';
+
+
 
 const Navbar = () =>{
+    const [allCategories, setAllCategories] = useState([]);
+
+    useEffect(() => {
+
+         async function getCategories(){
+            let mounted = true;
+            const requestOptions = {
+                method: 'GET',
+                headers: { 'Content-Type': 'application/json' },
+            };
+            const response = await getAllCategories(requestOptions);
+            const res = await response.json();
+            console.log("Response ", res);
+        
+             var categories = [];
+            for(let item of res){
+                if(mounted){
+                    categories.push(item)
+                }
+            }
+
+            setAllCategories(categories)
+
+            return () => mounted = false;
+        }
+
+        getCategories();
+      }, [])
+      
+      console.log("Items of categories === ", setAllCategories);
     return(
         <nav className="nav-wrapper teal accent-4">
             <div className="container">
                 <ul className="navbar">
-                    <li className="navbarLinks"><a className='dropdown-button btn teal accent-4 categories' data-beloworigin="true" href='#' data-activates='pulsesDropDown'>PULSES<i className="material-icons right">arrow_drop_down</i></a></li>
+                    {allCategories.map(category => 
+
+                        <li className="navbarLinks"><a className='dropdown-button btn teal accent-4 categories' data-beloworigin="true" href='#' data-activates='pulsesDropDown'>{category.categoryNameEng} ({category.categoryNameUrdu})<i className="material-icons right">arrow_drop_down</i></a></li>                       
+                    )}
+                     {/* <li className="navbarLinks"><a className='dropdown-button btn teal accent-4 categories' data-beloworigin="true" href='#' data-activates='pulsesDropDown'>PULSES<i className="material-icons right">arrow_drop_down</i></a></li>
                     <li className="navbarLinks"><a className='dropdown-button btn teal accent-4 categories' data-beloworigin="true" href='#' data-activates='grainsDropDown'>GRAINS<i className="material-icons right">arrow_drop_down</i></a></li>
                     <li className="navbarLinks"><a className='dropdown-button btn teal accent-4 categories' data-beloworigin="true" href='#' data-activates='fodderSeedsDropDown'>FODDER SEEDS<i className="material-icons right">arrow_drop_down</i></a></li>
                     <li className="navbarLinks"><a className='dropdown-button btn teal accent-4 categories' data-beloworigin="true" href='#' data-activates='spicesDropDown'>SPICES<i className="material-icons right">arrow_drop_down</i></a></li>
                     <li className="navbarLinks"><a className='dropdown-button btn teal accent-4 categories' data-beloworigin="true" href='#' data-activates='sugarDropDown'>SUGAR/GUR<i className="material-icons right">arrow_drop_down</i></a></li>
                     <li className="navbarLinks"><a className='dropdown-button btn teal accent-4 categories' data-beloworigin="true" href='#' data-activates='guarDropDown'>GUAR<i className="material-icons right">arrow_drop_down</i></a></li>
-                    <li className="navbarLinks"><a className='dropdown-button btn teal accent-4 categories' data-beloworigin="true" href='#' data-activates='oilSeedsDropDown'>OIL SEEDS<i className="material-icons right">arrow_drop_down</i></a></li>
+                    <li className="navbarLinks"><a className='dropdown-button btn teal accent-4 categories' data-beloworigin="true" href='#' data-activates='oilSeedsDropDown'>OIL SEEDS<i className="material-icons right">arrow_drop_down</i></a></li>  */}
+                   
                     <li className="navbarLinks"><a className='btn teal accent-4 categories'  href='/historicalRates'>HISTORICAL RATES</a></li>
-                    <li className="navbarLinks"><a className='btn teal accent-4 categories'  href='/historates'>RATES</a></li>
-                    <li className="navbarLinks"><a className='btn teal accent-4 categories'  href='/historiates'>RATES</a></li>
-                    <li className="navbarLinks"><a className='btn teal accent-4 categories'  href='/historiates'>RATES</a></li>
 
                 </ul>
 

@@ -1,7 +1,6 @@
 import {Component} from 'react';
 import Sidebar from '../Layout/Sidebar/Sidebar';
 import './Dashboard.css';
-
 import {addRate} from '../../services/rates.service';
 
 class AddRate extends Component{ 
